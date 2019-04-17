@@ -18,3 +18,4 @@ require('./db.php');
 $router = new Router();
 ?>
 <link rel="stylesheet" href="assets/css/main.css">
+<!-- <script type="text/javascript" src="./js/main.js"></script> -->

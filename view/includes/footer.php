@@ -1,4 +1,4 @@
- id=""		<footer>
+<footer>
 			<div class="inner-foot clearfix">
 				<span>
 					<h2>Computer shop</h2>
@@ -16,10 +16,10 @@
 				<h2>Zaprati nas</h2>
 				<?php if(!isset($_GET['url'])) : ?>
 				<ul>
-					<li><a href="https://www.facebook.com/milan.drndarevic.9" id="facebook"><img src="./assets/icons/facebook.jpg" alt="facebook"></a></li>
-					<li><a href="https://www.pinterest.com/drndica54/" id="pinterest"><img src="./assets/icons/pinterest.jpg" alt="pinterest"></a></li>
-					<li><a href="https://plus.google.com/discover" id="googleplus"><img src="./assets/icons/googleplus.jpg" alt="google+"></a></li>
-					<li><a href="https://twitter.com/?lang=sr" id="twitter"><img src="./assets/icons/twitter.jpg" alt="twitter"></a></li>
+					<li><a href="https://www.facebook.com/milan.drndarevic.9"><img src="./assets/icons/facebook.jpg" alt="facebook" id="facebook"></a></li>
+					<li><a href="https://www.pinterest.com/drndica54/"><img src="./assets/icons/pinterest.jpg" alt="pinterest" id="pinterest"></a></li>
+					<li><a href="https://plus.google.com/discover"><img src="./assets/icons/googleplus.jpg" alt="google+" id="googleplus"></a></li>
+					<li><a href="https://twitter.com/?lang=sr"><img src="./assets/icons/twitter.jpg" alt="twitter" id="twitter"></a></li>
 				</ul>
 				<?php else : ?>
 					<ul>
