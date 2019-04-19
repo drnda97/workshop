@@ -14,6 +14,7 @@ class ProductsController
     $view = new View();
     $product = new Product();
     $view->data['product'] = $product->getOne($_GET['id']);
+    $view->data['desc'] = $product->desc();
     $view->load('products', 'oneproduct');
   }
   public function bracket()

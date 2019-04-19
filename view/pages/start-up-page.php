@@ -15,7 +15,9 @@
           <?php  $img_url = substr($product['img_url'], 1); ?>
           <div class="inner-div clearfix">
             <span class="inner-span clearfix">
-              <img src="<?php echo $img_url; ?>" alt="">
+              <a href="http://localhost/igorjanosevic/workshop/pages/actionpage">
+                <img src="<?php echo $img_url; ?>" alt="">
+              </a>
             </span>
             <p><?php echo $product['title'] ?></p>
             <p><?php echo $product['description'] ?></p>

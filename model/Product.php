@@ -41,4 +41,20 @@ class Product
       return $item;
     }
   }
+  public function desc()
+  {
+    global $conn;
+    $query = 'select desc_name.desc_name, desc_value.desc_value ';
+    $query .= 'from desc_value ';
+    $query .= 'join products ';
+    $query .= 'on desc_value.id_product = products.id ';
+    $query .= 'join desc_name ';
+    $query .= 'on desc_value.id_desc_name = desc_name.id;';
+    $res = $conn->query($query);
+    $description = array();
+    while ($desc = $res->fetch_assoc()) {
+      array_push($description, $desc);
+    }
+    return $description;
+  }
 }
