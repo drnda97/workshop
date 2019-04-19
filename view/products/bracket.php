@@ -14,3 +14,6 @@
       </div>
   </div>
 <?php endif; ?>
+// odradi sutra action page dodaj u korpu
+//dodaj linkove na slikama na proizvodima na akciji
+//zavrsi korpu
