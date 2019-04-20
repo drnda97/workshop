@@ -49,7 +49,8 @@ class Product
     $query .= 'join products ';
     $query .= 'on desc_value.id_product = products.id ';
     $query .= 'join desc_name ';
-    $query .= 'on desc_value.id_desc_name = desc_name.id;';
+    $query .= 'on desc_value.id_desc_name = desc_name.id ';
+    $query .= 'where products.id = ' . $_GET['id'];
     $res = $conn->query($query);
     $description = array();
     while ($desc = $res->fetch_assoc()) {
