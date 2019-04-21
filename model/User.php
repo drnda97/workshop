@@ -11,7 +11,7 @@ class User
 		$email = mysqli_real_escape_string($conn, $email);
 		$password = mysqli_real_escape_string($conn, $password);
 
-		$query = 'INSERT INTO mockingbird.users VALUES (null, "'.$first_name.'", "'.$last_name.'", "'.$username.'", "'.$email.'", "'.$password.'", null)';
+		$query = 'INSERT INTO users (first_name, last_name, username, email, password) VALUES ("'.$first_name.'", "'.$last_name.'", "'.$username.'", "'.$email.'", "'.$password.'")';
 
 		$res = $conn->query($query);
 		return $res;

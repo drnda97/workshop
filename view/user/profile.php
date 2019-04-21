@@ -13,12 +13,12 @@
     <p><?php echo $_SESSION['user']->email;  ?><a href="#" class="edit"><small><i class="fas fa-edit"></i></small></a></p>
     <small>Username:</small>
     <p><?php echo $_SESSION['user']->username;  ?><a href="#" class="edit"><small><i class="fas fa-edit"></i></small></a></p>
-    <?php if ($_SESSION['user']->address !== ''): ?>
+    <?php if ($_SESSION['user']->address !== null): ?>
       <p><?php echo $_SESSION['user']->address;  ?><a href="#" class="edit"><small><i class="fas fa-edit"></i></small></a></p>
     <?php else:?>
       <input type="text" name="address" id="address" placeholder="Unesi adresu" class="profile-input">
     <?php endif; ?>
-    <?php if ($_SESSION['user']->postal_code !== '0'): ?>
+    <?php if ($_SESSION['user']->postal_code !== null): ?>
       <p><?php echo $_SESSION['user']->postal_code;  ?><a href="#" class="edit"><small><i class="fas fa-edit"></i></small></a></p>
     <?php else:?>
       <input type="text" name="postal_code" id="postal_code" placeholder="Unesi postanski broj" class="profile-input">
