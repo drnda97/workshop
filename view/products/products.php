@@ -1,73 +1,85 @@
-<aside class="product-aside clearfix">
-  <form action="http://localhost/igorjanosevic/workshop/products/sortproducts" method="post" class="" >
+<?php
+$this->data['products'] = Sorting::sortProducts($_GET, $this->data['products']);
+$manufacturer = [];
+$rating = [];
+if (isset($_GET['manufacturer'])) {
+	$manufacturer = $_GET['manufacturer'];
+}
+if (isset($_GET['price'])) {
+	$price = $_GET['price'];
+}
+ ?><aside class="product-aside clearfix">
+   <form  name="sortProducts">
+
     <h3>Proizvodjaci</h3>
     <p>
       <label>
-        <input type="checkbox" name="intel"  value="intel" <?php //echo in_array('altec-lansing', $manufacturer)? 'checked' : ''; ?>>
+        <input type="checkbox" name="manufacturer[]"  value="intel" <?php echo in_array('intel', $manufacturer)? 'checked' : ''; ?>>
         <span>Intel</span>
       </label>
     </p>
     <p>
       <label>
-        <input type="checkbox" name="amd"  value="amd" <?php //echo in_array('altec-lansing', $manufacturer)? 'checked' : ''; ?>>
+        <input type="checkbox" name="manufacturer[]"  value="amd" <?php echo in_array('amd', $manufacturer)? 'checked' : ''; ?>>
         <span>AMD</span>
       </label>
     </p>
     <p>
       <label>
-        <input type="checkbox" name="acer"  value="acer" <?php //echo in_array('altec-lansing', $manufacturer)? 'checked' : ''; ?>>
+        <input type="checkbox" name="manufacturer[]"  value="acer" <?php //echo in_array('acer', $manufacturer)? 'checked' : ''; ?>>
         <span>Acer</span>
       </label>
     </p>
     <p>
       <label>
-        <input type="checkbox" name="asus"  value="asus" <?php //echo in_array('altec-lansing', $manufacturer)? 'checked' : ''; ?>>
-        <span>Asus</span>
+        <input type="checkbox" name="manufacturer[]"  value="msi" <?php echo in_array('msi', $manufacturer)? 'checked' : ''; ?>>
+        <span>MSI</span>
       </label>
     </p>
     <p>
       <label>
-        <input type="checkbox" name="rog"  value="rog" <?php //echo in_array('altec-lansing', $manufacturer)? 'checked' : ''; ?>>
+        <input type="checkbox" name="manufacturer[]"  value="rog" <?php //echo in_array('rog', $manufacturer)? 'checked' : ''; ?>>
         <span>ROG</span>
       </label>
     </p>
     <p>
       <label>
-        <input type="checkbox" name="dell"  value="dell" <?php //echo in_array('altec-lansing', $manufacturer)? 'checked' : ''; ?>>
+        <input type="checkbox" name="manufacturer[]"  value="dell" <?php //echo in_array('dell', $manufacturer)? 'checked' : ''; ?>>
         <span>Dell</span>
       </label>
     </p>
     <p>
       <label>
-        <input type="checkbox" name="foxcon"  value="acer" <?php //echo in_array('altec-lansing', $manufacturer)? 'checked' : ''; ?>>
-        <span>Foxconn</span>
+        <input type="checkbox" name="manufacturer[]"  value="gigabyte" <?php echo in_array('gigabyte', $manufacturer)? 'checked' : ''; ?>>
+        <span>Gigabyte</span>
       </label>
     </p>
     <p>
       <label>
-        <input type="checkbox" name="hp"  value="hp" <?php //echo in_array('altec-lansing', $manufacturer)? 'checked' : ''; ?>>
+        <input type="checkbox" name="manufacturer[]"  value="hp" <?php //echo in_array('hp', $manufacturer)? 'checked' : ''; ?>>
         <span>HP</span>
       </label>
     </p>
     <p>
       <label>
-        <input type="checkbox" name="lenovo"  value="lenovo" <?php //echo in_array('altec-lansing', $manufacturer)? 'checked' : ''; ?>>
+        <input type="checkbox" name="manufacturer[]"  value="lenovo" <?php //echo in_array('lenovo', $manufacturer)? 'checked' : ''; ?>>
         <span>Lenovo</span>
       </label>
     </p>
-    <h3>Procesori</h3>
+    <h3>Cena</h3>
     <p>
       <label>
-        <input type="checkbox" name="intel"  value="intel" <?php //echo in_array('altec-lansing', $manufacturer)? 'checked' : ''; ?>>
-        <span>Intel</span>
+        <input type="checkbox" name="price"  value="rastuca" <?php //echo in_array('rastuca', $price)? 'checked' : ''; ?>>
+        <span>Rastuca</span>
       </label>
     </p>
     <p>
       <label>
-        <input type="checkbox" name="amd"  value="amd" <?php //echo in_array('altec-lansing', $manufacturer)? 'checked' : ''; ?>>
-        <span>AMD</span>
+        <input type="checkbox" name="price"  value="opadajuca" <?php //echo in_array('opadajuca', $price)? 'checked' : ''; ?>>
+        <span>Opadajuca</span>
       </label>
     </p>
+    <button type="submit" name="submit_form" class="filter-btn">Filter</button>
   </form>
 </aside>
 <main class="product-main clearfix">

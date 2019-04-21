@@ -7,7 +7,7 @@
 <?php else :  ?>
   <div class="cart clearfix">
     <h1>Vasi proizvodi</h1>
-      <div class="product clearfix">
+      <div class="one-product clearfix">
         <table border="1" cellpadding="15" cellspacing="0">
           <thead>
             <tr>
@@ -35,6 +35,6 @@
           </tbody>
         </table>
       </div>
-      <a href="#" class="order">Poruci</a>
+      <a href="#" class="order"><i class="fas fa-shipping-fast"></i> Poruci</a>
   </div>
 <?php endif; ?>

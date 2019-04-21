@@ -2,9 +2,7 @@ window.addEventListener('scroll', (e) => {
   if(window.scrollY > 0){
     var navbar = document.querySelector('#nav');
     var logo = navbar.querySelector('#logo');
-    console.log(logo);
     logo.src = './assets/images/logo.png';
-    console.log(navbar);
     navbar.style.backgroundColor = 'white';
     navbar.style.marginTop = '100px';
     navbar.style.padding = '10px';

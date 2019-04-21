@@ -25,6 +25,6 @@ class ProductsController
     $view->load('products', 'bracket');
   }
   public function sortproducts(){
-    var_dump('Sta se pije');
+    var_dump($_POST);
   }
 }

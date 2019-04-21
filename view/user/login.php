@@ -1,5 +1,5 @@
 <?php if(!isset($_SESSION['user'])) : ?>
-	<form method="POST" action="http://localhost/igorjanosevic/workshop/users/checkuser">
+	<form method="POST" action="http://localhost/igorjanosevic/workshop/users/checkuserlogin">
 		<?php if (isset($_GET['err'])) : ?>
 			<div class="err">
 				<?php foreach($_GET['err'] as $err) : ?>
@@ -22,8 +22,7 @@
 		<input type="submit" name="submit" value="Login">
 	</form>
 <?php else : ?>
-	<form action="http://localhost/igorjanosevic/workshop/users/checkuser" method="post" class="">
-	    <input type="hidden" name="fn" value="logout">
+	<form action="http://localhost/igorjanosevic/workshop/users/checkuserlogout" method="post" class="">
 	    <input type="submit" name="submit" value="Logout">
 	</form>
 <?php endif;  ?>

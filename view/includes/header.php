@@ -8,5 +8,6 @@
 		<link rel="stylesheet" type="text/css" href="<?php dirname('includes/header.php', 1) ?>../assets/css/main.css">
 		<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 		<script type="text/javascript" src="./js/main.js"></script>
+		<script type="text/javascript" src="../js/second.js"></script>
 	<body>
 		<?php require('navbar.php');  ?>

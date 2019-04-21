@@ -36,7 +36,6 @@ class User
 				$user = $res->fetch_object();
 				return $user;
 			}
-
 			return false;
 		} else {
 			return false;
