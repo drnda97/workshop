@@ -622,6 +622,14 @@ table tbody td{
 	width: 200px;
 	margin: 15px auto;
 }
+.image-input{
+	margin-top: 0 !important
+}
+.input-image{
+	width: 100%;
+	color: #fff;
+	font-family: 'PT-Sans', sans-serif;
+}
 .profile-img a{
 	display: block;
 	float: none;

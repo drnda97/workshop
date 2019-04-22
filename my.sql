@@ -18,9 +18,15 @@
 -- select film_id, title, length from film where RAND() <= 0.01;
 -- ./db_images/intel_celeronG3930.jpg
 
-select desc_name.desc_name, desc_value.desc_value
-from desc_value
-join products
-on desc_value.id_product = products.id
-join desc_name
-on desc_value.id_desc_name = desc_name.id;
+-- select desc_name.desc_name, desc_value.desc_value
+-- from desc_value
+-- join products
+-- on desc_value.id_product = products.id
+-- join desc_name
+-- on desc_value.id_desc_name = desc_name.id;
+
+-- create table profile_img(
+--   id int(11) not null primary key auto_increment,
+--   profile_img_url varchar(256) not null,
+--   status tinyint(1)
+-- );

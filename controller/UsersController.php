@@ -141,4 +141,64 @@ class UsersController
 	{
 		var_dump('Edituj mi adresu i postanski broj');
 	}
+
+	public function getBaseName($path){
+		$path = substr($path, strrpos($path, '/') + 1);
+		return $path;
+	}
+	private function createIfDoesntExist($uploads_dir, $folder_name){
+		$dir_found = false;
+		$upload_dir_content = glob($uploads_dir . '*');
+		foreach ($upload_dir_content as $dir_name) {
+			$dirname = $this->getBaseName($dir_name);
+			var_dump($dirname);
+			if ($dirname == $folder_name) {
+				$dir_found = true;
+				break;
+			}
+		}
+
+		if (!$dir_found){
+			mkdir($uploads_dir . $folder_name);
+		}
+	}
+	public function editprofileimg()
+	{
+		if(!isset($_FILES)){
+			header('Location: ' . $_SERVER['HTTP_REFERER']);
+		}else if($_FILES['upload_image']['size'] == 0){
+			header('Location: ' . $_SERVER['HTTP_REFERER'] . '?err[]=Please choose the image.');
+		}
+		var_dump($_FILES);
+		$uploads_dir = './user_images/';
+		$file_name = $_FILES['upload_image']['name'];
+		$file_tmp_name = $_FILES['upload_image']['tmp_name'];
+		$file_error = $_FILES['upload_image']['error'];
+		$file_size = $_FILES['upload_image']['size'];
+		$folder_name = $_SESSION['user']->username;
+		$file_ext = explode('.', $file_name);
+		$file_real_ext = strtolower(end($file_ext));
+		$allowed = array('jpg', 'jpeg', 'png');
+
+		if (!in_array($file_real_ext, $allowed)) {
+			header('Location: ' . $_SERVER['HTTP_REFERER'] . '?err[]=You cannot upload the file of this type.');
+		}
+
+		if ($file_error === 0) {
+			header('Location: ' . $_SERVER['HTTP_REFERER'] . '?err[]=Something went wrong please try again.');
+		}
+
+		if ($file_size < 1000000) {
+			header('Location: ' . $_SERVER['HTTP_REFERER'] . '?err[]=The image is too big.');
+		}
+
+		$file_new_name = time() .'.'.$file_real_ext;
+		$this->createIfDoesntExist($uploads_dir, $folder_name);
+		$uploads_dir .= $folder_name;
+		$file_new_destination = $uploads_dir. '/' .$file_new_name;
+		$result = move_uploaded_file($file_tmp_name, $file_new_destination);
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+		return $result;
+
+	}
 }

@@ -1,9 +1,19 @@
 <?php if(!isset($_SESSION['user'])) : ?>
   <?php header('Location: ' . $_SERVER['HTTP_REFERER']); ?>
 <?php endif; ?>
-<div class="profile-img">
+  <?php if (isset($_GET['err'])) : ?>
+    <div class="err">
+      <?php foreach($_GET['err'] as $err) : ?>
+        <?php echo $err; ?>
+      <?php endforeach; ?>
+    </div>
+  <?php endif; ?>
+  <div class="profile-img">
   <img src="../user_images/avatar.png" alt="no_profile_img">
-  <a href="#"><i class="fas fa-camera"></i> Promeni sliku</a>
+  <form action="http://localhost/igorjanosevic/workshop/users/editprofileimg" method="post" enctype="multipart/form-data">
+    <input type="file" name="upload_image" value="upload_image" class="input-image">
+    <input type="submit" name="submit" value="Upload" class="image-input">
+  </form>
 </div>
 <main class="profile-main">
   <small>Ime:</small>
