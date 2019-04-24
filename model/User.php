@@ -28,7 +28,6 @@ class User
 		global $conn;
 		$query = 'select * from mockingbird.users where email = "'.$email.'" and password = "'.$password.'"';
 		$res = $conn->query($query);
-		var_dump($res);
 		if ($res->num_rows == 1){
 			$query = 'update users set loged_in = 1 where email = "'.$email.'"';
 			$update_res = $conn->query($query);
@@ -46,6 +45,34 @@ class User
 		global $conn;
 		$query = 'update users set loged_in = 0 where id =  "'.$_SESSION['user']->id.'"';
 		$res = $conn->query($query);
-		var_dump($res);
+	}
+	public function getprofileimg($id)
+	{
+		global $conn;
+		$query = 'SELECT * FROM mockingbird.profile_img WHERE user_id = '. $id;
+		$res = $conn->query($query);
+		$img_src = $res->fetch_assoc();
+		return $img_src;
+	}
+	public function updateprofileimg($file_new_destination, $id)
+	{
+		global $conn;
+		$query = 'UPDATE profile_img SET profile_img_url = "' .$file_new_destination. '"  WHERE user_id = '. $id;
+		$res = $conn->query($query);
+		return $res;
+	}
+	public function checkuserimg($id)
+	{
+		global $conn;
+		$query = 'SELECT * FROM profile_img WHERE user_id = '. $id;
+		$res = $conn->query($query);
+		return $res->num_rows == 0;
+	}
+	public function createimgforuser($img_url_no_img, $id)
+	{
+		global $conn;
+		$query = 'INSERT INTO profile_img values (null, "'.$img_url_no_img.'", "'.$id.'")';
+		$res = $conn->query($query);
+		return $res;
 	}
 }

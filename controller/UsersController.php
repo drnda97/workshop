@@ -127,6 +127,9 @@ class UsersController
 		$user = new User();
 		if ($user_date = $user->login($email, $password)) {
 			$_SESSION['user'] = $user_date;
+			if ($user_no_exists = $user->checkuserimg($_SESSION['user']->id)) {
+				$create_img_for_user = $user->createimgforuser('../user_images/avatar.png', $_SESSION['user']->id); 
+			}
 			header('Location: http://localhost/igorjanosevic/workshop/');
 		}
 	}
@@ -151,7 +154,6 @@ class UsersController
 		$upload_dir_content = glob($uploads_dir . '*');
 		foreach ($upload_dir_content as $dir_name) {
 			$dirname = $this->getBaseName($dir_name);
-			var_dump($dirname);
 			if ($dirname == $folder_name) {
 				$dir_found = true;
 				break;
@@ -169,7 +171,6 @@ class UsersController
 		}else if($_FILES['upload_image']['size'] == 0){
 			header('Location: ' . $_SERVER['HTTP_REFERER'] . '?err[]=Please choose the image.');
 		}
-		var_dump($_FILES);
 		$uploads_dir = './user_images/';
 		$file_name = $_FILES['upload_image']['name'];
 		$file_tmp_name = $_FILES['upload_image']['tmp_name'];
@@ -184,11 +185,11 @@ class UsersController
 			header('Location: ' . $_SERVER['HTTP_REFERER'] . '?err[]=You cannot upload the file of this type.');
 		}
 
-		if ($file_error === 0) {
+		if ($file_error !== 0) {
 			header('Location: ' . $_SERVER['HTTP_REFERER'] . '?err[]=Something went wrong please try again.');
 		}
 
-		if ($file_size < 1000000) {
+		if ($file_size > 1000000) {
 			header('Location: ' . $_SERVER['HTTP_REFERER'] . '?err[]=The image is too big.');
 		}
 
@@ -197,8 +198,12 @@ class UsersController
 		$uploads_dir .= $folder_name;
 		$file_new_destination = $uploads_dir. '/' .$file_new_name;
 		$result = move_uploaded_file($file_tmp_name, $file_new_destination);
+
+		$user_img = new User();
+		$img_display = $user_img-> updateprofileimg($file_new_destination, $_SESSION['user']->id);
+		$img_url = $user_img->getprofileimg($_SESSION['user']->id);
+		$_SESSION['img'] = $img_url;
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
-		return $result;
 
 	}
 }

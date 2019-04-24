@@ -1,6 +1,5 @@
 window.addEventListener('load', () => {
   var img_1 = document.querySelector('#facebook');
-  console.log(img_1);
   var img_2 = document.querySelector('#pinterest');
   var img_3 = document.querySelector('#googleplus');
   var img_4 = document.querySelector('#twitter');
