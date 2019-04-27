@@ -11,7 +11,7 @@
       <?php foreach ($desc as $key => $name): ?>
         <?php if ($key % 2 > 0): ?>
         <?php foreach ($name as $value): ?>
-          <p style="background-color:#f1f1f1"><?php echo $value; ?></p>
+          <p style="background-color:#f1f1f1" class="even"><?php echo $value; ?></p>
         <?php endforeach; ?>
       <?php else: ?>
         <?php foreach ($name as $value): ?>
