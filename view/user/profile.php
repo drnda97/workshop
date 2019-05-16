@@ -1,7 +1,7 @@
 <?php if(!isset($_SESSION['user'])) : ?>
   <?php header('Location: ' . $_SERVER['HTTP_REFERER']); ?>
 <?php endif; ?>
-<?php $img_url =  $_SESSION['img']['profile_img_url']; ?>
+<?php $img_url =  $_SESSION['user']->profile_img_url; ?>
   <?php if (isset($_GET['err'])) : ?>
     <div class="err">
       <?php foreach($_GET['err'] as $err) : ?>
@@ -10,11 +10,7 @@
     </div>
   <?php endif; ?>
   <div class="profile-img">
-    <?php if (!isset($_SESSION['img'])): ?>
-      <img src="../user_images/avatar.png" alt="no_profile_img">
-    <?php else: ?>
       <img src=".<?php echo $img_url; ?>" alt="no_profile_img">
-    <?php endif; ?>
   <form action="http://localhost/igorjanosevic/workshop/users/editprofileimg" method="post" enctype="multipart/form-data">
     <input type="file" name="upload_image" value="upload_image" class="input-image">
     <input type="submit" name="submit" value="Upload" class="image-input">

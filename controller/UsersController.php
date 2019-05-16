@@ -127,9 +127,6 @@ class UsersController
 		$user = new User();
 		if ($user_date = $user->login($email, $password)) {
 			$_SESSION['user'] = $user_date;
-			if ($user_no_exists = $user->checkuserimg($_SESSION['user']->id)) {
-				$create_img_for_user = $user->createimgforuser('../user_images/avatar.png', $_SESSION['user']->id); 
-			}
 			header('Location: http://localhost/igorjanosevic/workshop/');
 		}
 	}
@@ -198,12 +195,10 @@ class UsersController
 		$uploads_dir .= $folder_name;
 		$file_new_destination = $uploads_dir. '/' .$file_new_name;
 		$result = move_uploaded_file($file_tmp_name, $file_new_destination);
-
 		$user_img = new User();
 		$img_display = $user_img-> updateprofileimg($file_new_destination, $_SESSION['user']->id);
-		$img_url = $user_img->getprofileimg($_SESSION['user']->id);
-		$_SESSION['img'] = $img_url;
+		$_SESSION['user']->profile_img_url = $file_new_destination;
+		// $_SESSION['img'] = $img_url;
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
-
 	}
 }

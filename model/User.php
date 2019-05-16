@@ -11,7 +11,7 @@ class User
 		$email = mysqli_real_escape_string($conn, $email);
 		$password = mysqli_real_escape_string($conn, $password);
 
-		$query = 'INSERT INTO users (first_name, last_name, username, email, password) VALUES ("'.$first_name.'", "'.$last_name.'", "'.$username.'", "'.$email.'", "'.$password.'")';
+		$query = 'INSERT INTO users (first_name, last_name, username, email, password, profile_img_url) VALUES ("'.$first_name.'", "'.$last_name.'", "'.$username.'", "'.$email.'", "'.$password.'", "./user_images/avatar.png")';
 
 		$res = $conn->query($query);
 		return $res;
@@ -46,33 +46,12 @@ class User
 		$query = 'update users set loged_in = 0 where id =  "'.$_SESSION['user']->id.'"';
 		$res = $conn->query($query);
 	}
-	public function getprofileimg($id)
-	{
-		global $conn;
-		$query = 'SELECT * FROM mockingbird.profile_img WHERE user_id = '. $id;
-		$res = $conn->query($query);
-		$img_src = $res->fetch_assoc();
-		return $img_src;
-	}
 	public function updateprofileimg($file_new_destination, $id)
 	{
 		global $conn;
-		$query = 'UPDATE profile_img SET profile_img_url = "' .$file_new_destination. '"  WHERE user_id = '. $id;
+		$query = 'UPDATE users SET profile_img_url = "' .$file_new_destination. '"  WHERE id = '. $id;
 		$res = $conn->query($query);
-		return $res;
-	}
-	public function checkuserimg($id)
-	{
-		global $conn;
-		$query = 'SELECT * FROM profile_img WHERE user_id = '. $id;
-		$res = $conn->query($query);
-		return $res->num_rows == 0;
-	}
-	public function createimgforuser($img_url_no_img, $id)
-	{
-		global $conn;
-		$query = 'INSERT INTO profile_img values (null, "'.$img_url_no_img.'", "'.$id.'")';
-		$res = $conn->query($query);
+		var_dump('ovde sam');
 		return $res;
 	}
 }
