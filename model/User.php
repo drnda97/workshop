@@ -51,7 +51,19 @@ class User
 		global $conn;
 		$query = 'UPDATE users SET profile_img_url = "' .$file_new_destination. '"  WHERE id = '. $id;
 		$res = $conn->query($query);
-		var_dump('ovde sam');
+		return $res;
+	}
+	public function edituserinfo($first_name, $last_name ,$username, $email, $address, $postal_code, $id)
+	{
+		global $conn;
+		$first_name = mysqli_real_escape_string($conn, $first_name);
+		$last_name = mysqli_real_escape_string($conn, $last_name);
+		$email = mysqli_real_escape_string($conn, $email);
+		$email = mysqli_real_escape_string($conn, $email);
+		$address = mysqli_real_escape_string($conn, $address);
+		$postal_code = mysqli_real_escape_string($conn, $postal_code);
+		$query = 'update users set first_name = "'.$first_name.'", last = "'.$last_name.'", email = "'.$email.'", username = "'.$username.'", address = "'.$address.'", postal = "'.$postal_code.'"   where id = '.$id;
+		$res = $conn->query($query);
 		return $res;
 	}
 }

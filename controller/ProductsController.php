@@ -24,7 +24,4 @@ class ProductsController
     $view->data['items'] = $product->shoping();
     $view->load('products', 'bracket');
   }
-  public function sortproducts(){
-    var_dump($_POST);
-  }
 }

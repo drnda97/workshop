@@ -30,6 +30,14 @@ class UsersController
 		$view->load('user', 'profile');
 	}
 	/*
+	*Route to display order
+	*/
+	public function order()
+	{
+		$view = new View();
+		$view->load('user', 'order');
+	}
+	/*
 	*Route to login and create a user
 	*/
 	public function checkuserregister()
@@ -137,10 +145,6 @@ class UsersController
 		unset($_SESSION['user']);
 		header('Location: http://localhost/igorjanosevic/workshop/users/login');
 	}
-	public function edituser()
-	{
-		var_dump('Edituj mi adresu i postanski broj');
-	}
 
 	public function getBaseName($path){
 		$path = substr($path, strrpos($path, '/') + 1);
@@ -198,7 +202,42 @@ class UsersController
 		$user_img = new User();
 		$img_display = $user_img-> updateprofileimg($file_new_destination, $_SESSION['user']->id);
 		$_SESSION['user']->profile_img_url = $file_new_destination;
-		// $_SESSION['img'] = $img_url;
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
+	public function editinfo()
+	{
+	 if (!isset($_POST['submit'])) {
+	 	header('Location: ' . $_SERVER['HTTP_REFERER']);
+	 }
+		$first_name = trim($_POST['first_name']);
+		$last_name = trim($_POST['last_name']);
+		$username = trim($_POST['username']);
+		$email = trim($_POST['email']);
+		$address = trim($_POST['address']);
+		$postal_code = trim($_POST['postal_code']);
+		if ($first_name == '') {
+			$first_name = $_SESSION['user']->first_name;
+		}
+		if ($last_name == '') {
+			$last_name = $_SESSION['user']->last_name;
+		}
+		if ($email == '') {
+			$email = $_SESSION['user']->email;
+		}
+		if ($username == '') {
+			$username = $_SESSION['user']->username;
+		}
+		if ($address == '') {
+			$address = $_SESSION['user']->address;
+		}
+		if ($postal_code == '') {
+			$postal_code = $_SESSION['user']->postal_code;
+		}
+		$user = new User();
+			if ($user->checkCredentials($email,$username){
+				header('Location: '. $_SERVER['HTTP_REFERER'] . '?succ=Successfully edited');
+			}
+			header('Location: ' .$_SERVER['HTTP_REFERER'] . '?err= Username or email is taken');
+	}
+	//Proveri da li je user promenio username, ako je ostao isti dozvoli da nastavi;
 }

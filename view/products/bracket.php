@@ -35,6 +35,6 @@
           </tbody>
         </table>
       </div>
-      <a href="#" class="order"><i class="fas fa-shipping-fast"></i> Poruci</a>
+      <a href="http://localhost/igorjanosevic/workshop/users/order" class="order"><i class="fas fa-shipping-fast"></i>Na porudzbinu</a>
   </div>
 <?php endif; ?>

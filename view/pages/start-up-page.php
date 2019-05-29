@@ -9,7 +9,7 @@
       </div>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
-    <div class="desc clearfix">
+      <div class="desc clearfix">
         <h1>Na akciji ove nedelje 10% popusta na sledece proizvode</h1>
         <?php foreach ($this->data['random'] as $product): ?>
           <?php  $img_url = substr($product['img_url'], 1); ?>
