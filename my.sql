@@ -30,3 +30,9 @@
 --   profile_img_url varchar(256) not null,
 --   status tinyint(1)
 -- );
+-- create table admin(
+-- 	id int auto_increment primary key,
+-- 	username varchar(50),
+-- 	email varchar(200),
+-- 	password varchar(200)
+-- );

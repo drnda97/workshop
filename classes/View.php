@@ -11,4 +11,15 @@ class View
 
 		require('./view/includes/footer.php');
 	}
+	public static function  adminload($entity_name, $partial_name)
+	{
+		require('./view/admin/adminincludes/header.php');
+
+		require('./view/admin/'.$entity_name.'/'.$partial_name.'.php');
+
+	}
+	public static function  adminloginload($entity_name, $partial_name)
+	{
+		require('./view/'.$entity_name.'/'.$partial_name.'.php');
+	}
 }

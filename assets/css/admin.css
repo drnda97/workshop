@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+HK&display=swap');
+html,
+body{
+  margin: 0;
+  padding: 0;
+}
+button{
+  display: block;
+  margin: 50px auto;
+  font-size: 20px;
+  padding: 5px 50px;
+  font-family: 'PT-Sans', sans-serif;
+  cursor: pointer;
+}

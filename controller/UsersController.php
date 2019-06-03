@@ -234,7 +234,7 @@ class UsersController
 			$postal_code = $_SESSION['user']->postal_code;
 		}
 		$user = new User();
-			if ($user->checkCredentials($email,$username){
+			if ($user->checkCredentials($email,$username)){
 				header('Location: '. $_SERVER['HTTP_REFERER'] . '?succ=Successfully edited');
 			}
 			header('Location: ' .$_SERVER['HTTP_REFERER'] . '?err= Username or email is taken');
