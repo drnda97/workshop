@@ -6,7 +6,7 @@ class AdminController
     {
       View::adminloginload('admin', 'adminlogin');
     }
-    public function checkadmin()
+    public function startpage()
     {
       View::adminload('adminpages', 'startpage');
     }

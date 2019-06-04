@@ -1,4 +1,4 @@
-<nav>
+<nav class="clearfix">
   <ul>
     <li><a href="#">Pocetna</a></li>
     <li><a href="#">Proizvodi</a></li>

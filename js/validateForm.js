@@ -3,41 +3,44 @@ window.addEventListener('load', () => {
   var email = document.querySelector('[name="email"]');
   var username = document.querySelector('[name="username"]');
   var password = document.querySelector('[name="password"]');
-  var small = document.querySelectorAll('.fail');
-  var smallItem = [].slice.call(small);
   var btn = document.querySelector('[name="Submit"]');
-  email.addEventListener('keyup', () => {
-    if(!validateEmail(email.value)){
-      smallItem[0].innerText = 'Email je u pogresnom formatu!';
-    }else{
-      smallItem[0].innerText = 'Email je u redu!';
-      smallItem[0].style.color = 'green';
-      smallItem[0].style.fontSize = '20px';
-      smallItem[0].style.fontFamily = 'Noto Sans HK';
-      smallItem[0].style.marginLeft = '280px';
-    }
-  });
-  if (username.value.trim() == '') {
-    smallItem[0].style.color = 'red';
-    smallItem[0].style.fontSize = '20px';
-    smallItem[0].style.marginLeft = '280px';
-    smallItem[0].innerText = 'Polje je prazno';
-    return;
+  console.log(form.username);
+  if(!validateEmail(email.value)){
+    alert('Email je u pogresan!');
+    return false;
   }
-  if (email.value.trim() == '') {
-    smallItem[1].innerHTMl = 'Polje je prazno';
-    return;
+  if(!checkPassword(password.value)){
+    alert('Lozinka je u pogresna!');
+    return false;
   }
-  if (password.value.trim() == '') {
-    smallItem[2].innerHTMl = 'Polje je prazno';
-    return;
+  if(!checkUsername(form)){
+    return false;
   }
   btn.addEventListener('click', () => {
-     form.submit();
+    form.submit();
   });
 });
 function validateEmail(email) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
-//odradi password i username kada su u fokusu i popravi email da ne prikazuje gresku dok se ne klikne na polje.
+function checkPassword(str)
+ {
+   // at least one number, one lowercase and one uppercase letter
+   // at least six characters that are letters, numbers or the underscore
+   var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/;
+   return re.test(str);
+ }
+ function checkUsername(form){
+   if(form.username.value == "") {
+     alert("Error: Username cannot be blank!");
+     form.username.focus();
+     return false;
+   }
+   re = /^\w+$/;
+   if(!re.test(form.username.value)) {
+     alert("Error: Username must contain only letters, numbers and underscores!");
+     form.username.focus();
+     return false;
+   }
+ }
