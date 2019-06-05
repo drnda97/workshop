@@ -5,6 +5,7 @@ class Router
   protected $controller = 'PagesController';
   protected $method = 'startupage';
   protected $params = [];
+
   public function __construct()
   {
        // $url = new Request;

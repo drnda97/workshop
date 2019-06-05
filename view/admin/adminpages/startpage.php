@@ -1,3 +1,6 @@
+<?php if (!isset($_SESSION['admin'])): ?>
+  <?php header('Location: http://localhost/igorjanosevic/workshop'); ?>
+<?php endif; ?>
 <h1>Welcome to startpage</h1>
 <h2>Nav table</h2>
 <table border="1" cellpadding="15" cellspacing="0">

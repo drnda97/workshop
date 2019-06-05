@@ -4,6 +4,7 @@
 	<?php else : ?>
 		<a href="http://localhost/igorjanosevic/workshop/" class="mocking"><img src="<?php dirname('includes/header.php', 1) ?>../assets/images/logo1.png" id="logo"></a>
 	<?php endif; ?>
+	<?php //var_dump($this->$availabe_nav); odradi da se prikazuje preko niza ?>
 	<ul>
 		<li><a href="http://localhost/igorjanosevic/workshop/">Pocetna</a></li>
 		<li><a href="http://localhost/igorjanosevic/workshop/products/products">Proizvodi</a></li>
@@ -21,7 +22,7 @@
 		</div>
 <?php else : ?>
 	<div class="log-reg">
-		<a href="http://localhost/igorjanosevic/workshop/users/profile"><?php echo $_SESSION['user']->first_name .' '. $_SESSION['user']->last_name;  ?></a>
+		<a href="http://localhost/igorjanosevic/workshop/users/profile"><?php echo $_SESSION['user']->first_name .' '. $_SESSION['user']->last_name;	?></a>
 	</div>
 <?php endif; ?>
 </nav>

@@ -4,18 +4,17 @@ window.addEventListener('load', () => {
   var username = document.querySelector('[name="username"]');
   var password = document.querySelector('[name="password"]');
   var btn = document.querySelector('[name="Submit"]');
-  console.log(form.username);
-  if(!validateEmail(email.value)){
-    alert('Email je u pogresan!');
-    return false;
-  }
-  if(!checkPassword(password.value)){
-    alert('Lozinka je u pogresna!');
-    return false;
-  }
-  if(!checkUsername(form)){
-    return false;
-  }
+  // if(!validateEmail(email.value)){
+  //   alert('Email je u pogresan!');
+  //   return false;
+  // }
+  // if(!checkPassword(password.value)){
+  //   alert('Lozinka je u pogresna!');
+  //   return false;
+  // }
+  // if(!checkUsername(form)){
+  //   return false;
+  // }
   btn.addEventListener('click', () => {
     form.submit();
   });

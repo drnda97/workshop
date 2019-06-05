@@ -33,16 +33,13 @@ nav ul{
 nav ul li{
   display: block;
   float: left;
-  width: 20%;
-  outline: 1px solid #000;
+  width: 20% !important;
 }
 nav ul li a{
   display: block;
   text-decoration: none;
   line-height: 2;
   font-size: 20px;
-  background-color: silver;
-  color: #000;
 }
 .fail{
   display: block;
@@ -55,4 +52,9 @@ nav ul li a{
   color: green;
   font-size: 20px;
   margin-left: 280px;
+}
+h1,
+h2,
+table{
+  text-align: center;
 }
