@@ -1,6 +1,9 @@
 <?php  $product = $this->data['product'];?>
 <?php  $desc = $this->data['desc'];?>
-<form action="http://localhost/igorjanosevic/workshop/products/bracket?action=add&id=<?php echo $product['id']; ?>" method="post">
+<?php if (isset($_SESSION['msg'])): ?>
+  <p class="msg"> <?php echo $_SESSION['msg']; ?></p>
+<?php endif; ?>
+<form action="http://localhost/igorjanosevic/workshop/products/addToCart?id=<?php echo $product['id']; ?>" method="post">
   <div class="product clearfix">
     <h1><?php echo $product['title']; ?></h1>
     <img src="<?php echo $product['img_url']; ?>" alt="product-image" class="product-image">

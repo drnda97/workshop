@@ -15,21 +15,23 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($_SESSION['admin_users'] as $user): ?>
-    <tr>
-      <td scope="row"><?php echo $user["id"]; ?></td>
-      <td><?php echo $user["first_name"]; ?></td>
-      <td><?php echo $user["last_name"]; ?></td>
-      <td><?php echo $user["username"]; ?></td>
-      <td><?php echo $user["email"]; ?></td>
-      <td><?php echo $user["loged_in"]; ?></td>
-      <td><?php echo $user["address"]; ?></td>
-      <td><?php echo $user["postal_code"]; ?></td>
-      <td><?php echo $user["profile_img_url"]; ?></td>
-      <td><a href="#">update</a></td>
-      <td><a href="#">delete</a></td>
-    </tr>
-  <?php endforeach; ?>
+    <form class="" action="index.html" method="post">
+      <?php foreach ($_SESSION['admin_users'] as $user): ?>
+      <tr>
+        <td scope="row"><?php echo $user["id"]; ?></td>
+        <td><?php echo $user["first_name"]; ?></td>
+        <td><?php echo $user["last_name"]; ?></td>
+        <td><?php echo $user["username"]; ?></td>
+        <td><?php echo $user["email"]; ?></td>
+        <td><?php echo $user["loged_in"]; ?></td>
+        <td><?php echo $user["address"]; ?></td>
+        <td><?php echo $user["postal_code"]; ?></td>
+        <td><?php echo $user["profile_img_url"]; ?></td>
+        <td><a href="#">update</a></td>
+        <td><a href="#">delete</a></td>
+      </tr>
+    <?php endforeach; ?>
+  </form>
   </tbody>
 
 </table>

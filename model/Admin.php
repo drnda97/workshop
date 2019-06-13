@@ -31,4 +31,9 @@ class Admin
     }
     return $products_data;
   }
+  public function interactionWithUsers($action, $id)
+  {
+    global $conn;
+    // $query = "'$action'" . 'user from table user where id = ' $id;
+  }
 }

@@ -1,6 +1,5 @@
-<?php $_SESSION['cart-item'] = $this->data['items']; ?>
 <?php $cntr = 0;  ?>
-<?php if (!isset($_SESSION['cart-item'])): ?>
+<?php if (!isset($_SESSION['cart'])): ?>
   <div class="empty-cart">
     <h1>Vasa korpa je prazna</h1>
   </div>
@@ -20,17 +19,22 @@
           </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><?php echo ++$cntr; ?></td>
-              <td><img src="<?php echo $_SESSION['cart-item']['img_url']; ?>" alt="product-image" class="img-in-bracket"></td>
-              <td><?php echo $_SESSION['cart-item']['title']; ?></td>
-              <td><?php echo $_SESSION['cart-item']['description']; ?></td>
-              <td><input type="text" name="quantity" value="1"></td>
-              <td>Cena: <?php echo $_SESSION['cart-item']['price']; ?>  din</td>
-          </tr>
+            <?php foreach ($_SESSION['cart'] as $product): ?>
+              <tr>
+                <td><?php echo ++$cntr; ?></td>
+                <td><img src="<?php echo $product['img_url']; ?>" alt="product-image" class="img-in-bracket"></td>
+                <td><?php echo $product['title']; ?></td>
+                <td><?php echo $product['description']; ?></td>
+                <form class="" action="http://localhost/igorjanosevic/workshop/products/bracket?action=quantity_updated&id="<?php echo $product['id']; ?>method="post">
+                  <td><input type="text" name="quantity" value="1">
+                  <input type="button" name="submit" value="Update"></td>
+                </form>
+                <td>Cena: <?php echo $product['price']; ?>  din</td>
+            </tr>
+          <?php endforeach; ?>
           <tr>
             <td colspan="4">Ukupno:</td>
-            <td colspan="4"><?php echo $_SESSION['cart-item']['price']; ?> din</td>
+            <td colspan="4"><?php echo $product['price']; ?> din</td>
           </tr>
           </tbody>
         </table>

@@ -43,54 +43,55 @@ window.addEventListener('load', () => {
   var text_display = document.querySelectorAll('.more-info');
   var cart_btn = document.querySelectorAll('.btn-section');
   var add_to_cart_btn = document.querySelectorAll('.hidden-p');
-  // for (let i = 0; i <= card.length; i++){
-  //   cardItems[i].addEventListener('mouseover', (e) => {
-  //     for (let j = 0; j <= img.length; j++){
-  //       img[j].addEventListener('mouseover', (e) => {
-  //         img[j].style.opacity = 0.5;
-  //       });
-  //     for (let k = 0; k <= text_display.length; k++){
-  //       text_display[k].addEventListener('mouseover', (e) => {
-  //         text_display.style.display = 'block';
-  //       });
-  //     }
-  //     for (let a = 0; a <= cart_btn.length; a++){
-  //       cart_btn[a].addEventListener('mouseover', (e) => {
-  //         cart_btn.style.borderLeft = '1px solid silver';
-  //         cart_btn.style.backgroundColor = 'silver';
-  //       });
-  //     }
-  //     for (let p = 0; p <= add_to_cart_btn.length; p++){
-  //       add_to_cart_btn[p].addEventListener('mouseover', (e) => {
-  //         add_to_cart_btn.style.color = '#000';
-  //         add_to_cart_btn.style.fontWeight = 'bolder';
-  //       });
-  //     }
-  //   }
-  //   });
-  // }
-  // card.addEventListener('mouseover', (e) => {
-  //   // text_display.style.display = 'block';
-  //   // cart_btn.style.borderLeft = '1px solid silver';
-  //   // cart_btn.style.backgroundColor = 'silver';
-  //   // add_to_cart_btn.style.color = '#000';
-  //   // add_to_cart_btn.style.fontWeight = 'bolder';
-  // });
-  // card.addEventListener('mouseleave', (e) => {
-  //   img.style.opacity = 1;
-  //   cart_btn.style.backgroundColor = '#fff';
-  //   text_display.style.display = 'none';
-  //   cart_btn.style.borderLeft = '';
-  //   add_to_cart_btn.style.color = '';
-  //   add_to_cart_btn.style.fontWeight = '';
-  // });
-  var link = document.querySelector('.edit');
-  var main_div = document.querySelector('#main_profile');
-  var secretDiv = document.querySelector('.secret');
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    secretDiv.classList = '';
-    main_div.classList = 'secret';
+  for (let i = 0; i <= cardItems.length; i++){
+    console.log(cardItems[i]);
+    cardItems[i].addEventListener('mouseover', (e) => {
+      for (let j = 0; j <= img.length; j++){
+        img[j].addEventListener('mouseover', (e) => {
+          img[j].style.opacity = 0.5;
+        });
+      for (let k = 0; k <= text_display.length; k++){
+        text_display[k].addEventListener('mouseover', (e) => {
+          text_display.style.display = 'block';
+        });
+      }
+      for (let a = 0; a <= cart_btn.length; a++){
+        cart_btn[a].addEventListener('mouseover', (e) => {
+          cart_btn.style.borderLeft = '1px solid silver';
+          cart_btn.style.backgroundColor = 'silver';
+        });
+      }
+      for (let p = 0; p <= add_to_cart_btn.length; p++){
+        add_to_cart_btn[p].addEventListener('mouseover', (e) => {
+          add_to_cart_btn.style.color = '#000';
+          add_to_cart_btn.style.fontWeight = 'bolder';
+        });
+      }
+    }
+    });
+  }
+  card.addEventListener('mouseover', (e) => {
+    text_display.style.display = 'block';
+    cart_btn.style.borderLeft = '1px solid silver';
+    cart_btn.style.backgroundColor = 'silver';
+    add_to_cart_btn.style.color = '#000';
+    add_to_cart_btn.style.fontWeight = 'bolder';
   });
-  console.log(linkItem);
+  card.addEventListener('mouseleave', (e) => {
+    img.style.opacity = 1;
+    cart_btn.style.backgroundColor = '#fff';
+    text_display.style.display = 'none';
+    cart_btn.style.borderLeft = '';
+    add_to_cart_btn.style.color = '';
+    add_to_cart_btn.style.fontWeight = '';
+  });
+  // var link = document.querySelector('.edit');
+  // var main_div = document.querySelector('#main_profile');
+  // var secretDiv = document.querySelector('.secret');
+  // link.addEventListener('click', (e) => {
+  //   e.preventDefault();
+  //   secretDiv.classList = '';
+  //   main_div.classList = 'secret';
+  // });
+  // console.log(linkItem);
 });

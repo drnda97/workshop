@@ -93,8 +93,8 @@ if (isset($_GET['price'])) {
 	      <h4><?php echo $product['description']; ?></h4>
 	      <span><?php echo $product['price']; ?>  din</span>
 				<section class="btn-section">
-					<a href="http://localhost/igorjanosevic/workshop/products/bracket?action=add&id=<?php echo $product['id']; ?>" class="product-btn"><i class="fas fa-shopping-cart"></i></a>
-					<a href="http://localhost/igorjanosevic/workshop/products/bracket?action=add&id=<?php echo $product['id']; ?>" class="hidden-p">Dodaj u</a>
+					<a href="http://localhost/igorjanosevic/workshop/products/addToCart?id=<?php echo $product['id']; ?>&quantity=1" class="product-btn"><i class="fas fa-shopping-cart"></i></a>
+					<a href="http://localhost/igorjanosevic/workshop/products/addToCart?id=<?php echo $product['id']; ?>&quantity=1" class="hidden-p">Dodaj u</a>
 				</section>
 				<a href="http://localhost/igorjanosevic/workshop/products/oneproduct?id=<?php echo $product['id']; ?>"><div class="more-info">More info</div></a>
 	    </div>

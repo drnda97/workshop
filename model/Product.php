@@ -31,15 +31,13 @@ class Product
     }
 		return $random;
   }
-  public function shoping()
+  public function shoping($id)
   {
     global $conn;
-    if (isset($_GET['id'])) {
-      $query = 'select * from products where id = '.$_GET['id'];
-      $res = $conn->query($query);
-      $item = $res->fetch_assoc();
-      return $item;
-    }
+    $query = 'select * from products where id = '. $id;
+    $res = $conn->query($query);
+    $product = $res->fetch_assoc();
+    return $product;
   }
   public function desc()
   {
