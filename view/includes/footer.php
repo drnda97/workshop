@@ -7,8 +7,8 @@
 				<span>
 					<h2>Contact</h2>
 					<ul>
-						<li><i class="fas fa-envelope"></i> drndica54@gmail.com</li>
-						<li><i class="fas fa-phone"></i> 0604628xxx</li>
+						<li><a href="#"><i class="fas fa-envelope"></i> drndica54@gmail.com</a></li>
+						<li><a href="#"><i class="fas fa-phone"></i> 0604628xxx</a></li>
 						<li><i class="fas fa-globe-europe"></i> Potrazi nas na drustvenim mrezama</li>
 					</ul>
 				</span>

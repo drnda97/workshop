@@ -29,6 +29,7 @@ body{
 	margin: 15px auto;
 	z-index: 1;
 	transition: all .2s linear;
+	position: relative;
 }
 nav img{
 	display: block;
@@ -120,6 +121,13 @@ input[type="submit"]:hover{
 }
 a[href="./register"]:visited{
 	color: blue;
+}
+.count_cart{
+	position: absolute;
+	top: -45px;
+	right: 417px;
+	color: #555;
+	font-size: 20px;
 }
 /*-----------------------------register----------------------------------------------- */
 .succ{
@@ -655,7 +663,7 @@ input[type="checkbox"]{
 	width: 150px;
 }
 table{
-	width: 90%;
+	width: 100%;
 	margin: 0 auto;
 	border: 1px solid #f1f1f1;
 	text-align: center;
@@ -678,6 +686,16 @@ table tbody td{
 	padding: 8px 50px;
 	margin: 15px 70px;
 	font-family: 'PT-Sans', sans-serif;
+}
+.remove_btn{
+	background-color: red;
+	padding: 10px 45px;
+	color: #fff;
+	text-decoration: none;
+	font-family: 'PT Sans', sans-serif;
+}
+table td{
+	border-bottom: 1px solid silver;
 }
 /*-----------------------------profile----------------------------------------------- */
 .profile-img{

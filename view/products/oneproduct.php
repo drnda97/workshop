@@ -1,8 +1,8 @@
 <?php  $product = $this->data['product'];?>
 <?php  $desc = $this->data['desc'];?>
-<?php if (isset($_SESSION['msg'])): ?>
-  <p class="msg"> <?php echo $_SESSION['msg']; ?></p>
-<?php endif; ?>
+<!-- <?php //if (isset($_SESSION['msg'])): ?>
+  <p class="msg"> <?php //echo $_SESSION['msg']; ?></p>
+<?php //endif; ?> -->
 <form action="http://localhost/igorjanosevic/workshop/products/addToCart?id=<?php echo $product['id']; ?>" method="post">
   <div class="product clearfix">
     <h1><?php echo $product['title']; ?></h1>

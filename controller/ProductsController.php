@@ -30,33 +30,37 @@ class ProductsController
     $view = new View();
     // get the product id
     $id = isset($_GET['id']) ? $_GET['id'] : '';
-
-    $quantity = isset($_GET['quantity']) ? $_GET['quantity'] : 1;
-    // make quantity a minimum of 1
-    $quantity=$quantity<=0 ? 1 : $quantity;
-    // add new item on array
-    $cart_item=array(
-        'quantity'=>$quantity
-    );
+    // if it's not set, set the session to array
     if (!isset($_SESSION['cart'])) {
       $_SESSION['cart'] = array();
     }
-   // check if the item is in the array, if it is, do not add
-   if (count($_SESSION['cart']) === 0) {
-     $res = $product->shoping($_GET['id']);
-     array_push($_SESSION['cart'], $res);
-   }
-
-   foreach ($_SESSION['cart'] as  $value) {
+    if (count($_SESSION['cart']) === 0) {
+      $res = $product->shoping($_GET['id']);
+      array_push($_SESSION['cart'], $res);
+      header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+    // check if the item is in the array, if it is, do not add
+    foreach ($_SESSION['cart'] as  $value) {
       if (in_array($id, $value)) {
-        $_SESSION['msg'] = 'The product is alredy in cart';
+        // $_SESSION['msg'] = 'The product is alredy in cart';
         header('Location: ' . $_SERVER['HTTP_REFERER']);
+        break;
       }else{
          $res = $product->shoping($_GET['id']);
-         $_SESSION['msg'] = 'The product was successfully added to cart';
+         // $_SESSION['msg'] = 'The product '.$res['title'].' was successfully added to cart';
          array_push($_SESSION['cart'], $res);
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        }
+         header('Location: ' . $_SERVER['HTTP_REFERER']);
+         break;
+      }
     }
+  }
+  public function removeFromCart(){
+    $cntr = $_GET['cntr'] - 1;
+    if (count($_SESSION['cart']) === 1) {
+      unset($_SESSION['cart']);
+    }
+    sort($_SESSION['cart']);
+    unset($_SESSION['cart'][$cntr]);
+  header('Location: '. $_SERVER['HTTP_REFERER']);
   }
 }

@@ -11,6 +11,11 @@
 		<li><a href="http://localhost/igorjanosevic/workshop/pages/about">Zanimljivosti</a></li>
 		<li><a href="http://localhost/igorjanosevic/workshop/pages/contact">Kontakt</a></li>
 		<li>
+			<?php if (isset($_SESSION['cart'])): ?>
+				<?php if (count($_SESSION['cart']) > 0): ?>
+					<a href="http://localhost/igorjanosevic/workshop/products/bracket" class="count_cart"><p ><i class="fas fa-long-arrow-alt-down"><?php echo count($_SESSION['cart']);  ?></i></p></a>
+				<?php endif; ?>
+			<?php endif; ?>
 			<a href="http://localhost/igorjanosevic/workshop/products/bracket" class="cart"><i class="fas fa-shopping-cart"></i> Korpa</a>
 		</li>
 	</ul>
