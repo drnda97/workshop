@@ -36,4 +36,32 @@ class Admin
     global $conn;
     // $query = "'$action'" . 'user from table user where id = ' $id;
   }
+  public function insertProduct($title, $description, $price, $img_url, $logo_img_url, $brand)
+  {
+    global $conn;
+    $title = mysqli_real_escape_string($conn, $title);
+    $description = mysqli_real_escape_string($conn, $description);
+    $price = mysqli_real_escape_string($conn, $price);
+    $img_url = mysqli_real_escape_string($conn, $img_url);
+    $logo_img_url = mysqli_real_escape_string($conn, $logo_img_url);
+    $brand = mysqli_real_escape_string($conn, $brand);
+
+    $query = 'INSERT INTO products VALUES(null, "'.$title.'", "'.$description.'", "'.$price.'", "'.$img_url.'", "'.$logo_img_url.'", "'.$brand.'")';
+    $res = $conn->query($query);
+    return $res;
+  }
+  public function deleteProduct($id)
+  {
+    global $conn;
+    $query = 'delete from products where id = '.$id.'';
+    $res = $conn->query($query);
+    return $res;
+  }
+  public function deleteUser($id)
+  {
+    global $conn;
+    $query = 'delete from users where id = '.$id.'';
+    $res = $conn->query($query);
+    return $res;
+  }
 }

@@ -31,12 +31,13 @@
                 <td><?php echo $product['title']; ?></td>
                 <td><?php echo $product['description']; ?></td>
                 <form class="" action="http://localhost/igorjanosevic/workshop/products/bracket?action=quantity_updated&id=<?php echo $product['id']; ?>" method="post">
-                  <td><input type="number" name="quantity" value="1">
+                  <td><input type="number" name="quantity" value="<?= isset($_POST['quantity']) ? $_POST['quantity'] : 1;  ?>">
                   <input type="submit" name="submit" value="Update"></td>
                 </form>
                 <td><a href="http://localhost/igorjanosevic/workshop/products/removeFromCart?cntr=<?php echo $cntr; ?>" class="remove_btn">Obrisi</a></td>
                 <td>Cena: <?php
                 if ($id_product === $product['id']) {
+                  $prices[] = number_format(floatval($product['price']) * $quantity, 3);
                   echo number_format(floatval($product['price']) * $quantity, 3);
                 }else{
                   echo $product['price'];
@@ -50,7 +51,7 @@
               foreach ($_SESSION['cart'] as $value) {
                  $total += $value['price'];
               }
-              echo number_format($total, 3);
+            echo number_format($total, 3);
              ?> din</td>
           </tr>
           </tbody>

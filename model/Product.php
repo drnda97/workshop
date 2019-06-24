@@ -31,7 +31,7 @@ class Product
     }
 		return $random;
   }
-  public function shoping($id)
+  public function getProduct($id)
   {
     global $conn;
     $query = 'select * from products where id = '. $id;

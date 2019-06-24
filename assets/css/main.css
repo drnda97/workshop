@@ -235,10 +235,10 @@ a[href="./register"]:visited{
 }
 .btn-start{
 	display: block;
+	width: 100px;
 	clear: both;
-	float: left;
-	padding: 10px 35px;
-	margin-left: 550px;
+	padding: 10px 45px;
+	margin: 0 auto;
 	margin-bottom: 50px;
 	border-radius: 100px;
 	background: grey;

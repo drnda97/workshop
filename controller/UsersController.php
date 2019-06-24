@@ -38,7 +38,7 @@ class UsersController
 		$view->load('user', 'order');
 	}
 	/*
-	*Route to login and create a user
+	*Route to create a user
 	*/
 	public function checkuserregister()
 	{
@@ -50,7 +50,9 @@ class UsersController
 				!isset($_POST['last_name']) ||
 				!isset($_POST['username']) ||
 				!isset($_POST['email']) ||
-				!isset($_POST['password'])
+				!isset($_POST['password']) ||
+				!isset($_POST['address']) ||
+				!isset($_POST['postal_code'])
 			){
 				$err[] = 'Missing fields';
 			}
@@ -58,8 +60,11 @@ class UsersController
 			$last_name = trim($_POST['last_name']);
 			$username = trim($_POST['username']);
 			$email = trim($_POST['email']);
+			$address = trim($_POST['address']);
+			$postal_code = trim($_POST['postal_code']);
 			$password = trim($_POST['password']);
 			$re_password = trim($_POST['re_password']);
+
 			if ($_POST['first_name'] == '') {
 				$err[] = 'First name is required';
 			}
@@ -71,6 +76,12 @@ class UsersController
 			}
 			if ($_POST['email'] == '') {
 				$err[] = 'Email address is required';
+			}
+			if ($_POST['address'] == '') {
+				$err[] = 'Shipping address is required';
+			}
+			if ($_POST['postal_code'] == '') {
+				$err[] = 'Postal code is required';
 			}
 			if ($_POST['password'] == '') {
 				$err[] = 'Password is required';
@@ -94,7 +105,7 @@ class UsersController
 			}
 			$user = new User();
 			if ($user->checkCredentials($email,$username)) {
-				$is_created = $user->create($first_name, $last_name, $username, $email, $password);
+				$is_created = $user->create($first_name, $last_name, $username, $email, $password, $address, $postal_code);
 				if ($is_created) {
 					header('Location: ' . $_SERVER['HTTP_REFERER'] . '?suc[]=Successfully registered.');
 				}
@@ -133,9 +144,15 @@ class UsersController
 			header('Location: '. $_SERVER['HTTP_REFERER'] . $err_str);
 		}
 		$user = new User();
-		if ($user_date = $user->login($email, $password)) {
-			$_SESSION['user'] = $user_date;
-			header('Location: http://localhost/igorjanosevic/workshop/');
+		if ($user_date = $user->login($email)) {
+			$db_pass = $user_date['password'];
+			if (password_verify($user_date['salt'].$password, $db_pass)) {
+				$user_info = $user->updateUserStatus($email);
+				$_SESSION['user'] = $user->getUserInfo($email);
+				header('Location: http://localhost/igorjanosevic/workshop/');
+			}else{
+				header('Location:' . $_SERVER['HTTP_REFERER'] .'?err=Wrong credentials');
+			}
 		}
 	}
 	public function checkuserlogout()
@@ -204,40 +221,51 @@ class UsersController
 		$_SESSION['user']->profile_img_url = $file_new_destination;
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}
-	public function editinfo()
-	{
-	 if (!isset($_POST['submit'])) {
-	 	header('Location: ' . $_SERVER['HTTP_REFERER']);
-	 }
-		$first_name = trim($_POST['first_name']);
-		$last_name = trim($_POST['last_name']);
-		$username = trim($_POST['username']);
-		$email = trim($_POST['email']);
-		$address = trim($_POST['address']);
-		$postal_code = trim($_POST['postal_code']);
-		if ($first_name == '') {
-			$first_name = $_SESSION['user']->first_name;
-		}
-		if ($last_name == '') {
-			$last_name = $_SESSION['user']->last_name;
-		}
-		if ($email == '') {
-			$email = $_SESSION['user']->email;
-		}
-		if ($username == '') {
-			$username = $_SESSION['user']->username;
-		}
-		if ($address == '') {
-			$address = $_SESSION['user']->address;
-		}
-		if ($postal_code == '') {
-			$postal_code = $_SESSION['user']->postal_code;
-		}
-		$user = new User();
-			if ($user->checkCredentials($email,$username)){
-				header('Location: '. $_SERVER['HTTP_REFERER'] . '?succ=Successfully edited');
-			}
-			header('Location: ' .$_SERVER['HTTP_REFERER'] . '?err= Username or email is taken');
-	}
-	//Proveri da li je user promenio username, ako je ostao isti dozvoli da nastavi;
+	// public function editinfo()
+	// {
+	//  if (!isset($_POST['submit'])) {
+	//  	header('Location: ' . $_SERVER['HTTP_REFERER']);
+	// 	}
+	// 	$id = $_GET['id'];
+	// 	$first_name = trim($_POST['first_name']);
+	// 	$last_name = trim($_POST['last_name']);
+	// 	$username = trim($_POST['username']);
+	// 	$email = trim($_POST['email']);
+	// 	$address = trim($_POST['address']);
+	// 	$postal_code = trim($_POST['postal_code']);
+	// 	if ($first_name == '') {
+	// 		$first_name = $_SESSION['user']->first_name;
+	// 	}
+	// 	if ($last_name == '') {
+	// 		$last_name = $_SESSION['user']->last_name;
+	// 	}
+	// 	if ($email == '') {
+	// 		$email = $_SESSION['user']->email;
+	// 	}
+	// 	if ($username == '') {
+	// 		$username = $_SESSION['user']->username;
+	// 	}
+	// 	if ($address == '') {
+	// 		$address = $_SESSION['user']->address;
+	// 	}
+	// 	if ($postal_code == '') {
+	// 		$postal_code = $_SESSION['user']->postal_code;
+	// 	}
+	// 	$user = new User();
+	// 		if ($user_edit = $user->getUserInfo($email)){
+	// 			if ($username != $user_edit->username && $email != $user_edit->email) {
+	// 				if ($user_credentials->$user->checkCredentials($email, $username)) {
+	// 					$user->edituserinfo($first_name, $last_name ,$username, $email, $address, $postal_code, $id);
+	// 					$_SESSION['user'] = $user->getUserInfo($email);
+	// 					header('Location: '. $_SERVER['HTTP_REFERER'] . '?succ=Successfully edited');
+	// 				}else{
+	// 					header('Location: ' .$_SERVER['HTTP_REFERER'] . '?err= Username or email is taken');
+	// 				}
+	// 			}else if($username == $user_edit->username || $email == $user_edit->email){
+	// 				$user->edituserinfo($first_name, $last_name ,$username, $email, $address, $postal_code, $id);
+	// 				$_SESSION['user'] = $user->getUserInfo($email);
+	// 				header('Location: '. $_SERVER['HTTP_REFERER'] . '?succ=Successfully edited');
+	// 			}
+	// 		}
+	// }
 }

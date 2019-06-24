@@ -2,9 +2,7 @@
 	<form method="POST" action="http://localhost/igorjanosevic/workshop/users/checkuserlogin">
 		<?php if (isset($_GET['err'])) : ?>
 			<div class="err">
-				<?php foreach($_GET['err'] as $err) : ?>
-					<?php echo $err; ?>
-				<?php endforeach; ?>
+				<?php echo $_GET['err']; ?>
 			</div>
 		<?php endif; ?>
 

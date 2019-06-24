@@ -34,6 +34,14 @@
 			<input type="email" name="email" id="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' ?>">
 		</div>
 		<div class="form-control log-in-middle">
+			<legend for="address">Shipping Adress</legend>
+			<input type="address" name="address" id="address" value="<?php echo isset($_POST['address']) ? $_POST['address'] : '' ?>">
+		</div>
+		<div class="form-control log-in-middle">
+			<legend for="postal_code">Postal code</legend>
+			<input type="postal_code" name="postal_code" id="postal_code" value="<?php echo isset($_POST['postal_code']) ? $_POST['postal_code'] : '' ?>">
+		</div>
+		<div class="form-control log-in-middle">
 			<legend for="password">Password</legend>
 			<input type="password" name="password" id="password">
 		</div>
@@ -44,7 +52,7 @@
 		<input type="submit" name="submit" value="Register">
 	</form>
 <?php else : ?>
-	<form action="http://localhost/igorjanosevic/workshop/users/checkuserlogout" method="post" class="">
+	<form action="http://localhost/igorjanosevic/workshop/users/checkuserlogout" method="post">
 	    <input type="submit" name="submit" value="Logout">
 	</form>
 <?php endif;  ?>

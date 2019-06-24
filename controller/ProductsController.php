@@ -35,7 +35,7 @@ class ProductsController
       $_SESSION['cart'] = array();
     }
     if (count($_SESSION['cart']) === 0) {
-      $res = $product->shoping($_GET['id']);
+      $res = $product->getProduct($_GET['id']);
       array_push($_SESSION['cart'], $res);
       header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
@@ -46,7 +46,7 @@ class ProductsController
         header('Location: ' . $_SERVER['HTTP_REFERER']);
         break;
       }else{
-         $res = $product->shoping($_GET['id']);
+         $res = $product->getProduct($_GET['id']);
          // $_SESSION['msg'] = 'The product '.$res['title'].' was successfully added to cart';
          array_push($_SESSION['cart'], $res);
          header('Location: ' . $_SERVER['HTTP_REFERER']);

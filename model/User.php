@@ -2,16 +2,20 @@
 
 class User
 {
-	public function create($first_name, $last_name, $username, $email, $password)
+	public function create($first_name, $last_name, $username, $email, $password, $address, $postal_code)
 	{
 		global $conn;
 		$first_name = mysqli_real_escape_string($conn, $first_name);
 		$last_name = mysqli_real_escape_string($conn, $last_name);
 		$username = mysqli_real_escape_string($conn, $username);
 		$email = mysqli_real_escape_string($conn, $email);
+		$address = mysqli_real_escape_string($conn, $address);
+		$postal_code = mysqli_real_escape_string($conn, $postal_code );
 		$password = mysqli_real_escape_string($conn, $password);
+		$salt = substr(hash('md5', time()), 0, 8);
+		$enc_password = password_hash($salt.$password, PASSWORD_DEFAULT);
 
-		$query = 'INSERT INTO users (first_name, last_name, username, email, password, profile_img_url) VALUES ("'.$first_name.'", "'.$last_name.'", "'.$username.'", "'.$email.'", "'.$password.'", "./user_images/avatar.png")';
+		$query = 'INSERT INTO users (first_name, last_name, username, email, password, address, postal_code, salt, profile_img_url) VALUES ("'.$first_name.'", "'.$last_name.'", "'.$username.'", "'.$email.'", "'.$enc_password.'", "'.$address.'", "'.$postal_code.'", "'.$salt.'", "./user_images/avatar.png")';
 
 		$res = $conn->query($query);
 		return $res;
@@ -23,22 +27,21 @@ class User
 		$res = $conn->query($query);
 		return $res->num_rows == 0;
 	}
-	public function login($email, $password)
+	public function login($email)
 	{
 		global $conn;
-		$query = 'select * from mockingbird.users where email = "'.$email.'" and password = "'.$password.'"';
+		$email = mysqli_real_escape_string($conn, $email);
+		$query = 'select salt, password from mockingbird.users where email = "'.$email.'"';
 		$res = $conn->query($query);
-		if ($res->num_rows == 1){
-			$query = 'update users set loged_in = 1 where email = "'.$email.'"';
-			$update_res = $conn->query($query);
-			if ($update_res){
-				$user = $res->fetch_object();
-				return $user;
-			}
-			return false;
-		} else {
-			return false;
-		}
+		$result = $res->fetch_assoc();
+		return $result;
+	}
+	public function updateUserStatus($email)
+	{
+		global $conn;
+		$query = 'update users set loged_in = 1 where email = "'.$email.'"';
+		$update_res = $conn->query($query);
+		return $update_res;
 	}
 	public function logout()
 	{
@@ -53,6 +56,15 @@ class User
 		$res = $conn->query($query);
 		return $res;
 	}
+	public function getUserInfo($email)
+	{
+		global $conn;
+		$email = mysqli_real_escape_string($conn, $email);
+		$query = 'select * from users where email = "'.$email.'"';
+		$res = $conn->query($query);
+		$result = $res->fetch_object();
+		return $result;
+	}
 	public function edituserinfo($first_name, $last_name ,$username, $email, $address, $postal_code, $id)
 	{
 		global $conn;
@@ -62,7 +74,7 @@ class User
 		$email = mysqli_real_escape_string($conn, $email);
 		$address = mysqli_real_escape_string($conn, $address);
 		$postal_code = mysqli_real_escape_string($conn, $postal_code);
-		$query = 'update users set first_name = "'.$first_name.'", last = "'.$last_name.'", email = "'.$email.'", username = "'.$username.'", address = "'.$address.'", postal = "'.$postal_code.'"   where id = '.$id;
+		$query = 'update users set first_name = "'.$first_name.'", last_name = "'.$last_name.'", email = "'.$email.'", username = "'.$username.'", address = "'.$address.'", postal_code = '.$postal_code.' where id = '.$id;
 		$res = $conn->query($query);
 		return $res;
 	}

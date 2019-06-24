@@ -34,7 +34,7 @@
     <?php if ($_SESSION['user']->postal_code !== null): ?>
       <p><?php echo $_SESSION['user']->postal_code;  ?></p>
     <?php else:?>
-      <input type="text" name="postal_code" id="postal_code" placeholder="Unesi postanski broj" class="profile-input">
+        <input type="text" name="postal_code" id="postal_code" placeholder="Unesi postanski broj" class="profile-input">
     <?php endif; ?>
   </main>
   <a href="#" class="edit">Edit <i class="fas fa-edit"></i></a>
@@ -43,7 +43,7 @@
 </form>
 </div>
 <div class="secret">
-  <form action="http://localhost/igorjanosevic/workshop/users/editinfo" method="post">
+  <form action="http://localhost/igorjanosevic/workshop/users/editinfo?id=<?php echo $_SESSION['user']->id; ?>" method="post">
     <div class="form-control">
       <legend>Ime:</legend>
       <input type="text" name="first_name" value="<?php echo $_SESSION['user']->first_name;?>">

@@ -23,7 +23,6 @@ window.addEventListener('load', (e) => {
 
   var img_1 = document.querySelector('#facebook');
   var img_2 = document.querySelector('#pinterest');
-  var img_3 = document.querySelector('#googleplus');
   var img_4 = document.querySelector('#twitter');
   img_1.addEventListener('mouseenter', (e) => {
     e.srcElement.src = './assets/icons/icon-facebook-hover.jpg';
@@ -36,12 +35,6 @@ window.addEventListener('load', (e) => {
   });
   img_2.addEventListener('mouseleave', (e) => {
     e.srcElement.src = './assets/icons/pinterest.jpg';
-  });
-  img_3.addEventListener('mouseover', (e) => {
-      e.srcElement.src = './assets/icons/icon-googleplus-hover.jpg';
-  });
-  img_3.addEventListener('mouseleave', (e) => {
-    e.srcElement.src = './assets/icons/googleplus.jpg';
   });
   img_4.addEventListener('mouseover', (e) => {
       e.srcElement.src = './assets/icons/icon-twitter-hover.jpg';

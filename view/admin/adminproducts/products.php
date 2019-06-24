@@ -2,7 +2,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col"></th>
+      <th scope="col">Bilo sta za sada</th>
     </tr>
   </thead>
 </table>
@@ -32,8 +32,20 @@
         <td><?php echo $value['logo_img_url'] ?></td>
         <td><?php echo $value['brand'] ?></td>
         <td><a href="#">update</a></td>
-        <td><a href="#">delete</a></td>
+        <td><a href="http://localhost/igorjanosevic/workshop/admin/deleteProduct?id=<?= $value['id']; ?>">delete</a></td>
       </tr>
     <?php endforeach; ?>
+    <tr class="secret">
+      <form action="http://localhost/igorjanosevic/workshop/admin/insertNewProduct" method="post" enctype="multipart/form-data">
+        <td><input type="text" name="title" placeholder="Enter title"></td>
+        <td><input type="text" name="description" placeholder="Enter description"></td>
+        <td><input type="text" name="price" placeholder="Enter price"></td>
+        <td colspan="3"><input type="file" name="img_url">Upload product image</td>
+        <td><input type="file" name="logo_img_url">Upload logo image</td>
+        <td><input type="text" name="brand" placeholder="Enter brand"></td>
+        <td><input type="submit" name="submit" value="Submit" id="product_submit_btn"></td>
+      </form>
+    </tr>
   </tbody>
+  <td colspan="2"><a href="#" class="addNewProduct">Dodaj novi +</a></td>
 </table>

@@ -28,6 +28,11 @@ class PagesController
 		$view = new View();
 		$view->load('pages', 'about');
 	}
+	public function noJsScript()
+	{
+		$view = new View();
+		$view->load('pages', 'noJsScript');
+	}
 	public function mailMe()
 	{
 		var_dump($_POST);

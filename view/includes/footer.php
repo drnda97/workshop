@@ -18,14 +18,12 @@
 				<ul>
 					<li><a href="https://www.facebook.com/milan.drndarevic.9" target="_blank"><img src="./assets/icons/facebook.jpg" alt="facebook" id="facebook"></a></li>
 					<li><a href="https://www.pinterest.com/drndica54/" target="_blank"><img src="./assets/icons/pinterest.jpg" alt="pinterest" id="pinterest"></a></li>
-					<li><a href="https://plus.google.com/discover" target="_blank"><img src="./assets/icons/googleplus.jpg" alt="google+" id="googleplus"></a></li>
 					<li><a href="https://twitter.com/?lang=sr" target="_blank"><img src="./assets/icons/twitter.jpg" alt="twitter" id="twitter"></a></li>
 				</ul>
 				<?php else : ?>
 					<ul>
 						<li><a href="https://www.facebook.com/milan.drndarevic.9" target="_blank"><img src="<?php dirname('includes/header.php', 1) ?>../assets/icons/facebook.jpg" alt="facebook" id="facebook"></a></li>
 						<li><a href="https://www.pinterest.com/drndica54/" target="_blank"><img src="<?php dirname('includes/header.php', 1) ?>../assets/icons/pinterest.jpg" alt="pinterest" id="pinterest"></a></li>
-						<li><a href="https://plus.google.com/discover" target="_blank"><img src="<?php dirname('includes/header.php', 1) ?>../assets/icons/googleplus.jpg" alt="google+" id="googleplus"></a></li>
 						<li><a href="https://twitter.com/?lang=sr" target="_blank"><img src="<?php dirname('includes/header.php', 1) ?>../assets/icons/twitter.jpg" alt="twitter" id="twitter"></a></li>
 					</ul>
 				<?php endif; ?>

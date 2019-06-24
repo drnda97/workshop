@@ -58,3 +58,6 @@ h2,
 table{
   text-align: center;
 }
+.secret{
+	display: none;
+}

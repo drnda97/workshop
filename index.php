@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 foreach (glob('./model/*') as $model_name) {
 	require($model_name);
 }
