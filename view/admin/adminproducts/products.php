@@ -31,7 +31,7 @@
         <td><?php echo $value['img_url'] ?></td>
         <td><?php echo $value['logo_img_url'] ?></td>
         <td><?php echo $value['brand'] ?></td>
-        <td><a href="#">update</a></td>
+        <td><a href="http://localhost/igorjanosevic/workshop/admin/updateProductData?id=<?= $value['id']; ?>">update</a></td>
         <td><a href="http://localhost/igorjanosevic/workshop/admin/deleteProduct?id=<?= $value['id']; ?>">delete</a></td>
       </tr>
     <?php endforeach; ?>

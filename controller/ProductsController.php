@@ -29,7 +29,7 @@ class ProductsController
     $product = new Product();
     $view = new View();
     // get the product id
-    $id = isset($_GET['id']) ? $_GET['id'] : '';
+    $id = isset($_GET['id']) ? $_GET['id'] : header('Location: ' . $_SERVER['HTTP_REFERER']);
     // if it's not set, set the session to array
     if (!isset($_SESSION['cart'])) {
       $_SESSION['cart'] = array();
@@ -61,6 +61,20 @@ class ProductsController
     }
     sort($_SESSION['cart']);
     unset($_SESSION['cart'][$cntr]);
-  header('Location: '. $_SERVER['HTTP_REFERER']);
+    header('Location: '. $_SERVER['HTTP_REFERER']);
+  }
+  public function searchForProduct()
+  {
+    if (!isset($_REQUEST['fn'])) {
+      header('Location: '. $_SERVER['HTTP_REFERER']);
+    }
+
+    $product_letters = isset($_GET['product_letters']) ? $_GET['product_letters'] : '';
+
+    $product = new Product();
+    $found_products = $product->searchForProductInBase($product_letters);
+
+    $json_products = json_encode($found_products);
+		echo $json_products;
   }
 }

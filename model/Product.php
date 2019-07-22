@@ -56,4 +56,16 @@ class Product
     }
     return $description;
   }
+  public function searchForProductInBase($letters)
+  {
+    global $conn;
+    $letters = mysqli_real_escape_string($conn, $letters);
+    $query = 'select * from products where title like "'.$letters.'%"';
+    $res = $conn->query($query);
+    $products = array();
+    while ($product = $res->fetch_assoc()){
+      $products[] = $product;
+    }
+    return $products;
+  }
 }

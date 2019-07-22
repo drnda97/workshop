@@ -4,12 +4,10 @@
 	<?php else : ?>
 		<a href="http://localhost/igorjanosevic/workshop/" class="mocking"><img src="<?php dirname('includes/header.php', 1) ?>../assets/images/logo1.png" id="logo"></a>
 	<?php endif; ?>
-	<?php //var_dump($this->$availabe_nav); odradi da se prikazuje preko niza ?>
 	<ul>
-		<li><a href="http://localhost/igorjanosevic/workshop/">Pocetna</a></li>
-		<li><a href="http://localhost/igorjanosevic/workshop/products/products">Proizvodi</a></li>
-		<li><a href="http://localhost/igorjanosevic/workshop/pages/about">Zanimljivosti</a></li>
-		<li><a href="http://localhost/igorjanosevic/workshop/pages/contact">Kontakt</a></li>
+		<?php foreach ($_SESSION['nav'] as $value): ?>
+			<li><a href="<?= $value['value']; ?>"><?= $value['page_option']; ?></a></li>
+		<?php endforeach; ?>
 		<li>
 			<?php if (isset($_SESSION['cart'])): ?>
 				<?php if (count($_SESSION['cart']) > 0): ?>
@@ -25,9 +23,9 @@
 			<span>/</span>
 			<a href="http://localhost/igorjanosevic/workshop/users/register">Register</a>
 		</div>
-<?php else : ?>
-	<div class="log-reg">
-		<a href="http://localhost/igorjanosevic/workshop/users/profile"><?php echo $_SESSION['user']->first_name .' '. $_SESSION['user']->last_name;	?></a>
-	</div>
-<?php endif; ?>
+	<?php else : ?>
+		<div class="log-reg">
+			<a href="http://localhost/igorjanosevic/workshop/users/profile"><?php echo $_SESSION['user']->first_name .' '. $_SESSION['user']->last_name;	?></a>
+		</div>
+	<?php endif; ?>
 </nav>

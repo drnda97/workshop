@@ -1,4 +1,22 @@
 <h1>Svi korisnici na nasem sajtu</h1>
+<?php
+  if (isset($_GET['err'])) {
+    ?>
+    <div style="background-color:red">
+      <p><?= $_GET['err']  ?></p>
+    </div>
+    <?php
+  }
+ ?>
+<?php
+  if (isset($_GET['succ'])) {
+    ?>
+    <div style="background-color:green">
+      <p><?= $_GET['succ']  ?></p>
+    </div>
+    <?php
+  }
+ ?>
 <table class="table">
   <thead>
     <tr>
@@ -15,7 +33,6 @@
     </tr>
   </thead>
   <tbody>
-    <form class="" action="index.html" method="post">
       <?php foreach ($_SESSION['admin_users'] as $user): ?>
       <tr class="user_tr">
         <td scope="row"><?php echo $user["id"]; ?></td>
@@ -31,18 +48,20 @@
         <td><a href="http://localhost/igorjanosevic/workshop/admin/deleteUser?id=<?= $user['id']; ?>">delete</a></td>
       </tr>
       <tr class="secret user">
-        <form action="http://localhost/igorjanosevic/workshop/admin/insertNewProduct" method="post" enctype="multipart/form-data">
+        <form action="http://localhost/igorjanosevic/workshop/admin/updateUser?id=<?= $user['id']; ?>" method="post">
+          <td>&nbsp;</td>
           <td><input type="text" name="first_name" value="<?= $user['first_name']  ?>"></td>
           <td><input type="text" name="last_name" value="<?= $user['last_name']  ?>"></td>
           <td><input type="text" name="username" value="<?= $user['username']  ?>"></td>
           <td><input type="text" name="email" value="<?= $user['email']  ?>"></td>
+          <td>&nbsp;</td>
           <td><input type="text" name="address" value="<?= $user['address']  ?>"></td>
           <td><input type="text" name="postal_code" value="<?= $user['postal_code']  ?>"></td>
+          <td>&nbsp;</td>
           <td><input type="submit" name="submit" value="Submit" id="product_submit_btn"></td>
         </form>
       </tr>
     <?php endforeach; ?>
-  </form>
   </tbody>
 
 </table>

@@ -6,16 +6,21 @@
 <table border="1" cellpadding="15" cellspacing="0">
   <thead>
     <tr>
-      <th>#</th>
-      <th>Title</th>
-      <th>href</th>
+      <th>id</th>
+      <th>page_option</th>
+      <th>value</th>
     </tr>
   </thead>
   <tbody>
+    <?php foreach ($_SESSION['nav'] as  $value): ?>
+      <tr>
+        <td><?= $value['id']; ?></td>
+        <td><?= $value['page_option']; ?></td>
+        <td><?= $value['value']; ?></td>
+      </tr>
+    <?php endforeach; ?>
     <tr>
-      <td>1</td>
-      <td>P</td>
-      <td>P/workshop</td>
+      <td colspan="3"><a href="http://localhost/igorjanosevic/workshop/admin/updateNavPageLoad">Update</a></td>      
     </tr>
   </tbody>
 </table>

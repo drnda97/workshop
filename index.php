@@ -12,4 +12,3 @@ require('./db.php');
 
 $router = new Router();
 ?>
-<link rel="stylesheet" href="assets/css/main.css">

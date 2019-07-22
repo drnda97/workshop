@@ -146,13 +146,15 @@ class UsersController
 		$user = new User();
 		if ($user_date = $user->login($email)) {
 			$db_pass = $user_date['password'];
-			if (password_verify($user_date['salt'].$password, $db_pass)) {
+			if (hash('md5', $user_date['salt'].$password) === $db_pass) {
 				$user_info = $user->updateUserStatus($email);
 				$_SESSION['user'] = $user->getUserInfo($email);
 				header('Location: http://localhost/igorjanosevic/workshop/');
 			}else{
 				header('Location:' . $_SERVER['HTTP_REFERER'] .'?err=Wrong credentials');
 			}
+		}else{
+			header('Location:' . $_SERVER['HTTP_REFERER'] .'?err=Wrong credentials');			
 		}
 	}
 	public function checkuserlogout()
@@ -163,11 +165,13 @@ class UsersController
 		header('Location: http://localhost/igorjanosevic/workshop/users/login');
 	}
 
-	public function getBaseName($path){
+	public function getBaseName($path)
+	{
 		$path = substr($path, strrpos($path, '/') + 1);
 		return $path;
 	}
-	private function createIfDoesntExist($uploads_dir, $folder_name){
+	private function createIfDoesntExist($uploads_dir, $folder_name)
+	{
 		$dir_found = false;
 		$upload_dir_content = glob($uploads_dir . '*');
 		foreach ($upload_dir_content as $dir_name) {

@@ -61,3 +61,54 @@ table{
 .secret{
 	display: none;
 }
+.input_form{
+  text-align: center;
+  margin-bottom: 15px;
+}
+.input_form input{
+  width: 500px;
+  text-align: center;
+}
+.input_form img{
+  width: 200px;
+  display: block;
+  margin: 0 auto;
+}
+.input_form small{
+  display: block;
+}
+.input_submit,
+.desc_submit{
+  display: block;
+  width: 200px !important;
+  margin: 40px auto;
+  clear: both;
+}
+.desc_form{
+  text-align: center;
+  margin-top: 50px;
+}
+.desc_form div{
+  margin: 0 auto;
+}
+.desc_form select{
+  width: 300px;
+}
+.desc_form div input{
+  width: 300px;
+  margin: 15px auto;
+}
+.add_new_desc_form_btn{
+  display: block;
+  float: left;
+  margin-left: 45%;
+  clear: right;
+}
+.desc_p{
+  text-align: center;
+  width: 80%;
+  margin: 15px auto;
+}
+h4{
+  text-align: center;
+}

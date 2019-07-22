@@ -30,8 +30,7 @@ class PagesController
 	}
 	public function noJsScript()
 	{
-		$view = new View();
-		$view->load('pages', 'noJsScript');
+		View::adminloginload('pages', 'noJsScript');
 	}
 	public function mailMe()
 	{

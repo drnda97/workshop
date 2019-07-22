@@ -11,80 +11,84 @@ window.addEventListener('scroll', () => {
 window.addEventListener('load', () => {
   var card = document.querySelectorAll('.card');
   var cardItems = [].slice.call(card);
-  var img = document.querySelectorAll('.product-image');
-  var imgItems = [].slice.call(img);
-  var text_display = document.querySelectorAll('.more-info');
-  var textItems = [].slice.call(text_display);
-  var cart_btn = document.querySelectorAll('.btn-section');
-  var cart_btns = [].slice.call(cart_btn);
-  var add_to_cart_btn = document.querySelectorAll('.hidden-p');
-  var add_to_cart_btns = [].slice.call(add_to_cart_btn);
+  
   cardItems.forEach(card =>{
     card.addEventListener('mouseover', (e) => {
-      imgItems.forEach(img =>{
-        img.addEventListener('mouseover', (e) => {
-          e.target.style.opacity = .5;
-        });
-      });
-      textItems.forEach(text_display =>{
-        text_display.addEventListener('mouseover', (e) => {
-          e.target.style.display = 'block';
-        });
-      });
-      cart_btns.forEach(cart_btn =>{
-        cart_btn.addEventListener('mouseover', (e) => {
-          e.target.style.borderLeft = '1px solid silver';
-          e.target.style.backgroundColor = 'silver';
-        });
-      });
-      add_to_cart_btns.forEach(add_to_cart_btn =>{
-        add_to_cart_btn.addEventListener('mouseover', (e) => {
-          e.target.style.color = '#000';
-          e.target.style.fontWeight = 'bolder';
-        });
-      });
-    });
-    });
-  cardItems.forEach(card =>{
-    card.addEventListener('mouseleave', (e) => {
-      imgItems.forEach(img =>{
-        img.addEventListener('mouseleave', (e) => {
-          e.target.style.opacity = 1;
-        });
-      });
-      textItems.forEach(text_display =>{
-        text_display.addEventListener('mouseleave', (e) => {
-          e.target.style.display = 'none';
-        });
-      });
-      cart_btns.forEach(cart_btn =>{
-        cart_btn.addEventListener('mouseleave', (e) => {
-          e.target.style.borderLeft = '';
-          e.target.style.backgroundColor = '#fff';
-        });
-      });
-      add_to_cart_btns.forEach(add_to_cart_btn =>{
-        add_to_cart_btn.addEventListener('mouseleave', (e) => {
-          e.target.style.color = '';
-          e.target.style.fontWeight = '';
-        });
-      });
+      card.querySelector('.more_info_btn').style.display = 'block';
+      card.querySelector('.ext_cart_btn').style.display = 'block';
+      card.querySelector('.product-image').style.opacity = '.5';
+      card.querySelector('.product-btn').style.backgroundColor = 'silver';
+      card.querySelector('.ext_cart_btn').style.fontWeight = 'bolder';
+
     });
   });
-  // card.addEventListener('mouseover', (e) => {
-  //   img.style.opacity = .5;
-  //   text_display.style.display = 'block';
-  //   cart_btn.style.borderLeft = '1px solid silver';
-  //   cart_btn.style.backgroundColor = 'silver';
-  //   add_to_cart_btn.style.color = '#000';
-  //   add_to_cart_btn.style.fontWeight = 'bolder';
-  // });
-  // card.addEventListener('mouseleave', (e) => {
-  //   img.style.opacity = 1;
-  //   text_display.style.display = 'none';
-  //   cart_btn.style.backgroundColor = '#fff';
-  //   cart_btn.style.borderLeft = '';
-  //   add_to_cart_btn.style.color = '';
-  //   add_to_cart_btn.style.fontWeight = '';
-  // });
+  cardItems.forEach(card =>{
+    card.addEventListener('mouseleave', (e) => {
+      card.querySelector('.more_info_btn').style.display = 'none';
+      card.querySelector('.ext_cart_btn').style.display = 'none';
+      card.querySelector('.product-image').style.opacity = '1';
+      card.querySelector('.product-btn').style.backgroundColor = '#fff';
+    });
+   });
+
+
+  var data = {
+    fn: 'search_product'
+  };
+  var input_search = document.querySelector('[name="search"]');
+  input_search.addEventListener('keyup', (e) => {
+    var input_val = e.target.value;
+    var data = {
+      product_letters: input_val,
+      fn: 'search_product'
+    }
+    makeAjaxProductRequest('get', 'http://localhost/igorjanosevic/workshop/products/searchForProduct', data);
+  });
+
 });
+function makeAjaxProductRequest(method, url, payload = false){
+  var xhr = new XMLHttpRequest();
+  if (payload != false){
+    if (method == 'get'){
+      var cntr = 0;
+      for (var key in payload){
+        url += (++cntr == 1) ? '?'+key+'='+payload[key] : '&'+key+'='+payload[key];
+      }
+    }
+  }
+  xhr.open(method, url);
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState == 4) {
+      if (xhr.responseText == 'false') {
+        alert('Greska');
+      } else {
+        var product_card = document.querySelectorAll('.card');
+        product_cards = [].slice.call(product_card);
+        product_cards.forEach(product_card => {
+          product_card.classList.add('secret');
+        });
+        var add_after_this = document.querySelector('.add_after_this');
+        var response = JSON.parse(xhr.responseText);
+        for (var i = 0; i < response.length; i++) {
+        	var product = response[i];
+      		var new_card_html = `
+              <div class="card">
+                <a href="http://localhost/igorjanosevic/workshop/products/oneproduct?id=${product.id}">
+                  <img src="${product.img_url}" alt="product-image" class="product-image">
+                </a>
+                <h4>${product.description}</h4>
+                <span>${product.price}  din</span>
+                <section class="btn-section">
+                  <a href="http://localhost/igorjanosevic/workshop/products/addToCart?id=${product.id}" class="product-btn"><i class="fas fa-shopping-cart"></i></a>
+                  <a href="http://localhost/igorjanosevic/workshop/products/addToCart?id=${product.id}" class="hidden-p">Dodaj u</a>
+                </section>
+                <a href="http://localhost/igorjanosevic/workshop/products/oneproduct?id=${product.id}"><div class="more-info">More info</div></a>
+              </div>
+        		`;
+        		add_after_this.insertAdjacentHTML('afterend', new_card_html);
+        }
+      }
+    }
+  }
+  xhr.send();
+}
