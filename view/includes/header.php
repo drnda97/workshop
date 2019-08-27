@@ -10,7 +10,7 @@
 		<?php if (!isset($_GET['url'])): ?>
 			<link rel="stylesheet" href="assets/css/main.css">
 			<script type="text/javascript" src="./js/main.js"></script>
-			<script type="text/javascript" src="./js/admin.js"></script>
+			<script type="text/javascript" src="../js/admin.js"></script>
 		<?php elseif($_GET['url'] == 'products/products'): ?>
 			<script type="text/javascript" src="../js/second.js"></script>
 			<script type="text/javascript" src="../js/product.js"></script>

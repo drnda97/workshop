@@ -49,18 +49,7 @@ class PagesController
 		$last_name = trim($_POST['last-name']);
 		$email = trim($_POST['email']);
 		$msg = trim($_POST['msg']);
-		if ($name == '') {
-			$err[] = 'Name is required';
-		}
-		if ($last_name == '') {
-			$err[] = 'Last Name is required';
-		}
-		if ($email == '') {
-			$err[] = 'Email is required';
-		}
-		if ($msg == '') {
-			$err[] = 'Message is required';
-		}
+
 		if (count($err) > 0) {
 			$err_str = implode('&err[]=', $err);
 		}

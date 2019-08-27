@@ -49,13 +49,6 @@ class AdminController
             $err [] = 'Missing fields';
       }
 
-      if (empty(trim($_POST['title'])) ||
-          empty(trim($_POST['description'])) ||
-          empty(trim($_POST['price'])) ||
-          empty(trim($_POST['brand']))) {
-            $err [] = 'Empty fields';
-      }
-
       $title = $_POST['title'];
       $description = $_POST['description'];
       $price = $_POST['price'];
@@ -84,10 +77,9 @@ class AdminController
       $result_img_url = move_uploaded_file($file_tmp_img_url_name, $file_new_destination_img);
 
 
-      // if (count($err > 0)) {
-      //   $error_log = implode('', $err);
-      //   header('Location:' . $_SERVER['HTTP_REFERER'] . '?err='.$error_log);
-      // }
+      if (count($err > 0)) {
+        header('Location:' . $_SERVER['HTTP_REFERER'] . '?err='.$err);
+      }
 
       $admin = new Admin();
       if ($admin->insertProduct($title, $description, $price, '.'.$file_new_destination_img, '.'.$file_new_destination_logo, $brand)) {
@@ -181,6 +173,7 @@ class AdminController
       if (!isset($_POST['submit'])) {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
       }
+
       $id = $_GET['id'];
       $first_name = trim($_POST['first_name']);
       $last_name = trim($_POST['last_name']);
@@ -188,10 +181,8 @@ class AdminController
       $email = trim($_POST['email']);
       $address = trim($_POST['address']);
       $postal_code = trim($_POST['postal_code']);
+
       if  (!isset($first_name) || !isset($last_name) || !isset($username) || !isset($email) || !isset($address) || !isset($postal_code)) {
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-      }
-      if  (empty($first_name) || empty($last_name) || empty($username) || empty($email) || empty($address) || empty($postal_code)) {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
       }
 

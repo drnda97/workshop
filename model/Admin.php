@@ -131,6 +131,7 @@ class Admin
     $res = $conn->query($query);
     return $res;
   }
+  //TO DO: Set value of page option for page option (It only change names not the value, wrong name on the wrong url);
   public function updateNavInBase($args)
   {
     global $conn;

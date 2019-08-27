@@ -11,7 +11,7 @@ window.addEventListener('scroll', () => {
 window.addEventListener('load', () => {
   var card = document.querySelectorAll('.card');
   var cardItems = [].slice.call(card);
-  
+
   cardItems.forEach(card =>{
     card.addEventListener('mouseover', (e) => {
       card.querySelector('.more_info_btn').style.display = 'block';
@@ -30,7 +30,6 @@ window.addEventListener('load', () => {
       card.querySelector('.product-btn').style.backgroundColor = '#fff';
     });
    });
-
 
   var data = {
     fn: 'search_product'

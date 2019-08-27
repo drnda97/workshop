@@ -65,30 +65,6 @@ class UsersController
 			$password = trim($_POST['password']);
 			$re_password = trim($_POST['re_password']);
 
-			if ($_POST['first_name'] == '') {
-				$err[] = 'First name is required';
-			}
-			if ($_POST['last_name'] == '') {
-				$err[] = 'Last name is required';
-			}
-			if ($_POST['username'] == '') {
-				$err[] = 'username is required';
-			}
-			if ($_POST['email'] == '') {
-				$err[] = 'Email address is required';
-			}
-			if ($_POST['address'] == '') {
-				$err[] = 'Shipping address is required';
-			}
-			if ($_POST['postal_code'] == '') {
-				$err[] = 'Postal code is required';
-			}
-			if ($_POST['password'] == '') {
-				$err[] = 'Password is required';
-			}
-			if ($_POST['re_password'] == '') {
-				$err[] = 'Re-Type Password is required';
-			}
 
 			if ($password != $re_password) {
 				$err[] = 'Passwords don\'t match';
@@ -105,7 +81,11 @@ class UsersController
 			}
 			$user = new User();
 			if ($user->checkCredentials($email,$username)) {
-				$is_created = $user->create($first_name, $last_name, $username, $email, $password, $address, $postal_code);
+
+				$salt = substr(hash('md5', time()), 0, 8);
+				$enc_password = hash('md5', $salt.$password);
+
+				$is_created = $user->create($first_name, $last_name, $username, $email, $enc_password, $address, $postal_code, $salt);
 				if ($is_created) {
 					header('Location: ' . $_SERVER['HTTP_REFERER'] . '?suc[]=Successfully registered.');
 				}
@@ -128,12 +108,6 @@ class UsersController
 		$email = trim($_POST['email']);
 		$password = trim($_POST['password']);
 
-		if ($email == '') {
-			$err[] = 'Email is required!';
-		}
-		if ($password == '') {
-			$err[] = 'Password is required!';
-		}
 		if (count($err) > 0) {
 			if (count($err) == 1) {
 				$err_str = '&err[]=' . $err[0];
@@ -154,7 +128,7 @@ class UsersController
 				header('Location:' . $_SERVER['HTTP_REFERER'] .'?err=Wrong credentials');
 			}
 		}else{
-			header('Location:' . $_SERVER['HTTP_REFERER'] .'?err=Wrong credentials');			
+			header('Location:' . $_SERVER['HTTP_REFERER'] .'?err=Wrong credentials');
 		}
 	}
 	public function checkuserlogout()

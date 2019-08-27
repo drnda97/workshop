@@ -16,7 +16,6 @@
 			<input type="password" name="password" id="password">
 		</div>
 		<legend>You don't have account yet? <a href="./register">Register</a></legend>
-		<input type="hidden" name="fn" value="login">
 		<input type="submit" name="submit" value="Login">
 	</form>
 <?php else : ?>

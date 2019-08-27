@@ -9,6 +9,7 @@ foreach (glob('./classes/*') as $class_name) {
 }
 
 require('./db.php');
-
+$admin = new Admin();
+$_SESSION['nav'] = $admin->getNav();
 $router = new Router();
 ?>

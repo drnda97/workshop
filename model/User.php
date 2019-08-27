@@ -2,7 +2,7 @@
 
 class User
 {
-	public function create($first_name, $last_name, $username, $email, $password, $address, $postal_code)
+	public function create($first_name, $last_name, $username, $email, $password, $address, $postal_code, $salt)
 	{
 		global $conn;
 		$first_name = mysqli_real_escape_string($conn, $first_name);
@@ -12,8 +12,6 @@ class User
 		$address = mysqli_real_escape_string($conn, $address);
 		$postal_code = mysqli_real_escape_string($conn, $postal_code );
 		$password = mysqli_real_escape_string($conn, $password);
-		$salt = substr(hash('md5', time()), 0, 8);
-		$enc_password = hash('md5', $salt.$password);
 
 		$query = 'INSERT INTO users (first_name, last_name, username, email, password, address, postal_code, salt, profile_img_url) VALUES ("'.$first_name.'", "'.$last_name.'", "'.$username.'", "'.$email.'", "'.$enc_password.'", "'.$address.'", "'.$postal_code.'", "'.$salt.'", "./user_images/avatar.png")';
 
